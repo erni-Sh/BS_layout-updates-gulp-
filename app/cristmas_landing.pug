@@ -1,0 +1,124 @@
+extends includes/_tmpl
+
+block styles
+    link(rel='stylesheet', href='/static/css/BS_cur_init.min.css')
+    link(rel='stylesheet', href='/static/css/_instapage.css')
+    link(rel='stylesheet', href='/static/css/custom/xmas-2022/christmas-styles.min.css')
+
+block scripts
+    script(src='/static/js/custom/xmas-2022/christmas-landing.js')
+
+block main
+    section#landing-header.section.section-relative
+        .section-holder-border.item-block.item-absolute
+        .section-holder-overlay.item-block.item-absolute
+        .section-block.section-relative
+            //.landing-header__background
+            //    include ../assets/XMAS_top_BG.svg
+            .landing-header__background(style='background-image: url(/assets/christmas_landing/XMAS_top_BG.svg)')
+            .landing-header__snow__layerOne(style='background-image: url(/assets/christmas_landing/snow2.png)')
+            .landing-header__snow__layerTwo(style='background-image: url(/assets/christmas_landing/snow1.png)')
+            .landing-header__left.xmasContainer
+                .landing-header__logo
+                    include includes/svg/buildstore-logo_full.svg
+                .landing-header__title.xmasTitle
+                    h1 Merry Jolly Christmas
+
+                .landing-header__descr
+                    p Hello again! Just follow the steps below
+                        br
+                        |and may the stars align in&nbsp;your favor
+
+
+            .landing-header__roulette
+                .landing-header__tree
+                    include includes/svg/XMAS_tree.svg
+                    //include ../assets/XMAS_bottom_tree.svg
+                .landing-header__drum
+                    include includes/svg/XMAS_drum.svg
+                .landing-header__drum-pointer.js-spin-wheel
+                    include includes/svg/XMAS_pointer.svg
+                //.landing-header__cracker__backup
+                //    img(src='/assets/soul_landing/XMAS_top_cracker.svg' alt='background')
+                .landing-header__cracker
+                    include includes/svg/XMAS_cracker.svg
+                .landing-header__left_snowflake
+                    include includes/svg/XMAS_left-snowflake.svg
+                .landing-header__tile
+                    include includes/svg/XMAS_tile.svg
+                .landing-header__right_snowflake
+                    include includes/svg/XMAS_right_snowflake.svg
+
+            //img.landing-header__background__bottom(src='/assets/soul_landing/XMAS_top_BG_bottom.svg' alt='background')
+            //.landing-header__background__bottom(style="background-image: url('/assets/soul_landing/XMAS_top_BG_bottom.svg')")
+            .landing-header__background__bottom
+                include includes/svg/XMAS_top_BG_bottom.svg
+
+            .container
+                .landing-header__button
+                    button.xmasButton
+                        span.js-spin-wheel SPIN THE WHEEL
+                    //a.url-link.btn.item-block(href='/accounts/register/' onclick="fbq('track', 'user_tap_sign_up_button')")
+                    //    | SPIN THE WHEEL
+
+    section.xmasSteps
+        .xmasContainer
+            .xmasSteps__inner
+                .xmasSteps__step
+                    .xmasSteps__step__icon
+                        include includes/svg/icon_step1.svg
+                    .xmasSteps__step__title Step 1
+                    .xmasSteps__step__descr
+                        | Spin the wheel of fortune
+                .xmasSteps__step
+                    .xmasSteps__step__icon
+                        include includes/svg/icon_step2.svg
+                    .xmasSteps__step__title Step 2
+                    .xmasSteps__step__descr
+                        | Visit us on&nbsp;
+                        a(href='http://facebook.com/iosbuildstore/' target="_blank") Facebook
+                        |  or&nbsp;
+                        a(href="http://www.twitter.com/builds_io" target="_blank") Twitter
+                .xmasSteps__step
+                    .xmasSteps__step__icon
+                        include includes/svg/icon_step3.svg
+                    .xmasSteps__step__title Step 3
+                    .xmasSteps__step__descr
+                        | Tag&nbsp;
+                        span @BuildStore&nbsp;
+                        | and share your promo code with your&nbsp;friends
+
+    section.xmasFooter
+        .xmasFooter__top
+            .xmasFooter__top__background(style="background-image: url('/assets/christmas_landing/XMAS_bottom_BG.svg')")
+            .xmasFooter__top__tree
+                include includes/svg/XMAS_bottom_tree.svg
+            .xmasContainer
+                .xmasFooter__top__title.xmasTitle
+                    | Get ready to celebrate a&nbsp;Merry&nbsp;Jolly&nbsp;Christmas!
+                //.xmasFooter__top__button
+                //    button.xmasButton
+                //        span.js-spin-wheel SPIN THE WHEEL
+                .xmasFooter__top__smalltext
+                    | *Please, note that this promocode gives a&nbsp;discount for the 1st month only and is&nbsp;only available for the next five days
+        .xmasFooter__bottom
+            .xmasContainer
+                .xmasFooter__bottom__inner
+                    a.xmasFooter__bottom__logo(href="#!")
+                        include includes/svg/buildstore-logo_full.svg
+
+    section.xmasModal__wrapper
+        .xmasModal__inner
+            .xmasModal__background
+                include includes/svg/XMAS_popup.svg
+            .xmasModal__title
+                | 20% OFF
+            .xmasModal__promocode
+                span NAUGHTY10
+                .xmasModal__promocode__icon
+                    include includes/svg/icon_copy.svg
+                .xmasModal__promocode__copied
+                    | Copied!
+            .xmasModal__button
+                button.xmasButton
+                    span USE PROMOCODE
