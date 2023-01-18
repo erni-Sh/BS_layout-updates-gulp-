@@ -10,13 +10,27 @@ const gulp = require('gulp'),
   concat = require('gulp-concat'),
   wait = require('gulp-wait'),
   gutil = require('gutil'),
+  clean = require('gulp-rimraf'),
   ftp = require('vinyl-ftp');
   // keys = require('./config_secret.js'),
 
 const distFolder = 'dist/';
 
+gulp.task('pug', function(){
+  return gulp.src([
+    'app/**/*.pug',
+    '!app/**/_*.pug',
+  ])
+    .pipe(pug({pretty: true}).on('error', notify.onError({
+      message: "Error: <%= error.message %>",
+      title: "PUG ERROR"
+    })))
+    .pipe(gulp.dest(distFolder))
+    .pipe(browserSync.reload({stream: true}))
+});
+
 gulp.task('scss', function(){
-  return gulp.src('app/scss/*.scss')
+  return gulp.src('app/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(wait(1500))
     //compressed
@@ -27,45 +41,40 @@ gulp.task('scss', function(){
     .pipe(autoprefixer({
       overrideBrowserslist: ['last 8 versions']
     }))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: 'static/css'}))
-    .pipe(gulp.dest(`${distFolder}css`))
-    .pipe(browserSync.reload({stream: true}))
-});
-
-// gulp.task('pug', function(){
-//   return gulp.src(['app/pug/**/*.pug', '!app/pug/includes/**/*'])
-//     .pipe(pug({pretty: true}).on('error', notify.onError({
-//       message: "Error: <%= error.message %>",
-//       title: "PUG ERROR"
-//     })))
-//     .pipe(rename({ extname: '.php' }))
-//     .pipe(gulp.dest(distFolder))
-//     .pipe(browserSync.reload({stream: true}))
-// });
-
-gulp.task('pug-local', function(){
-  return gulp.src('app/pug/*.pug')
-    .pipe(pug({pretty: true}).on('error', notify.onError({
-      message: "Error: <%= error.message %>",
-      title: "PUG ERROR"
-    })))
-    .pipe(gulp.dest(distFolder))
+    // .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: 'css'}))
+    .pipe(gulp.dest(`${distFolder}`))
     .pipe(browserSync.reload({stream: true}))
 });
 
 gulp.task('js', function () {
-  return gulp.src('app/js/*.js')
+  return gulp.src([
+      'app/**/*.js',
+      '!app/**/_*.js',
+    ])
     // .pipe(uglify())
     // .pipe(concat('custom.js'))
-    .pipe(gulp.dest(`${distFolder}js`));
+    .pipe(gulp.dest(`${distFolder}`));
+});
+
+gulp.task('assets', function () {
+  return gulp.src([
+      'app/**/*.svg',
+      '!app/**/_svg/*.svg', //for includes svg in template
+      'app/**/*.jpeg',
+      'app/**/*.jpg',
+      'app/**/*.png',
+      'app/**/*.css',
+    ])
+    .pipe(gulp.dest(`${distFolder}`));
 });
 
 gulp.task('browser-sync', function() {
   browserSync.init({
-    // ui: {
-    //   port: 8080
-    // },
+    port: 4040,
+    ui: false,
+    open: false,
+    notify: true,
     server: {
       baseDir: distFolder,
       routes : {
@@ -73,6 +82,10 @@ gulp.task('browser-sync', function() {
       }
     }
   });
+});
+
+gulp.task('clean', function() {
+  return gulp.src(`${distFolder}/*`, { read: false }).pipe(clean());
 });
 
 // gulp.task( 'deploy', function () {
@@ -102,19 +115,27 @@ gulp.task('browser-sync', function() {
 // });
 
 // gulp.task('watch', function(){
-//   gulp.watch('app/scss/**/*.scss', gulp.series('scss','deploy'));
-//   gulp.watch('app/pug/**/*.pug', gulp.series('pug','deploy'));
+//   gulp.watch('app/css/**/*.css', gulp.series('css','deploy'));
+//   gulp.watch('app/not_serve/**/*.not_serve', gulp.series('not_serve','deploy'));
 //   gulp.watch('app/js/**/*.js', gulp.series('js','deploy'));
 // });
 
 gulp.task('watch-local', function(done){
-  gulp.watch('app/scss/**/*.scss', gulp.series('scss'));
-  gulp.watch('app/pug/**/*.pug', gulp.series('pug-local'));
-  gulp.watch('app/js/**/*.js', gulp.series('js'));
+  gulp.watch([
+    'app/**/*.svg',
+    '!app/**/_svg/*.svg',
+    'app/**/*.jpeg',
+    'app/**/*.jpg',
+    'app/**/*.png',
+    'app/**/*.css',
+  ], gulp.series('assets'));
+  gulp.watch('app/**/*.scss', gulp.series('scss'));
+  gulp.watch('app/**/*.pug', gulp.series('pug'));
+  gulp.watch('app/**/*.js', gulp.series('js'));
   done();
 });
 
 // -------------------------------------------------
-// gulp.task('online', gulp.series('scss', 'pug', 'js', 'deploy', 'watch'))
+// gulp.task('online', gulp.series('css', 'pug', 'js', 'deploy', 'watch'))
 
-gulp.task('default', gulp.series('scss', 'pug-local', 'js', 'watch-local', 'browser-sync'))
+gulp.task('default', gulp.series('clean', 'pug', 'scss', 'js', 'assets', 'watch-local', 'browser-sync'))

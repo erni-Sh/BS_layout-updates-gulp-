@@ -1,0 +1,32 @@
+mixin LPCatalogApp
+	.ColLP__catalogApp
+		.ColLP__catalogApp__left
+			.ColLP__catalogApp__icon.background-shimmer
+				img(
+					src='/app-collections_landing/static/assets/app-collections_landing/WA-icon.jpeg'
+					onload=`this.classList.add('isVisible')`
+				)
+			.ColLP__catalogApp__rateStars
+				include _svg/rateStar.svg
+				include _svg/rateStar.svg
+				include _svg/rateStar.svg
+				include _svg/rateStar.svg
+				include _svg/rateStar.svg
+			.ColLP__catalogApp__rateText
+				span 5.0
+				span , 64 Ratings
+
+		.ColLP__catalogApp__right
+			.ColLP__catalogApp__right__top
+				.ColLP__catalogApp__title
+					| WhatsApp Watusi
+				.ColLP__catalogApp__descr
+					| Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor incididunt
+			.ColLP__catalogApp__right__bottom
+				.ColLP__catalogApp__size
+					.ColLP__catalogApp__size__count
+						| 180mb
+					.ColLP__catalogApp__size__label
+						| Size
+				a(href='#!').ColLP__catalogApp__button
+					| GET

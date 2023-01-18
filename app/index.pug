@@ -1,14 +1,13 @@
 extends includes/_tmpl
 
 block styles
-    link(rel='stylesheet', href='css/styles.min.css')
-
-block main
-    .header
-        | Header
-    .wheel
-        | hello World123
-        | hello World123
+    link(rel='stylesheet', href='')
 
 block scripts
-    script(src='/js/header.js')
+    script(src='')
+
+block main
+    .links(style="display: flex;flex-direction: column;")
+        a(href='christmas_landing.html') Christmas_landing
+        a(href='/app-collections_landing/') App Collections Landing
+

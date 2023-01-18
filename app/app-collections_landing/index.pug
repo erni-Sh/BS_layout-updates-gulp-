@@ -1,0 +1,158 @@
+extends includes/_tmpl
+
+
+
+block styles
+	link(rel='stylesheet', href='/app-collections_landing/static/css/vendor/swiper.min.css')
+	link(rel='stylesheet', href='/app-collections_landing/static/css/custom/app-collections_landing.css')
+
+block scripts
+	script(src='/app-collections_landing/static/js/vendor/swiper.min.js')
+	script(src='/app-collections_landing/static/js/custom/app-collections_landing.js')
+
+block main
+	- var BG = 'linear-gradient(98.33deg, #6750BD 0%, #5515E0 70.79%, #D25C8D 100%)';
+	- var title = 'Kids! Kids! Kids!';
+	- var descr = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ';
+	- var mainIcon = '/app-collections_landing/static/assets/app-collections_kids/Kids_main_pic.svg';
+	- var appsArray = '';
+	- var PROMOCODE = 'KIDS';
+
+	// - var BG = 'linear-gradient(98.33deg, #6750BD 0%, #42F5B5 70.79%, #61F47B 100%)';
+	// - var title = 'Special offers for WhatsApp Tweaks!';
+	// - var descr = 'Make your choise and use this incredible features!';
+	// - var mainIcon = '/WhatsApp_landing/static/assets/app-collections_whatsApp/wa_main_top.svg';
+	// - var PROMOCODE = "WHAT";
+
+	section.ColLP__top(style=`background:${BG}`)
+		.ColLP__top__wrapper.container
+			.ColLP__top__pictures
+				.ColLP__top__pictures__wrapper
+					.ColLP__top__circles
+						include includes/_svg/circles.svg
+					.ColLP__top__app-icon
+						img(
+							src= mainIcon
+							onload=`this.parentElement.classList.add('ColLP__top__app-icon_isVisible')`
+						)
+						//include includes/_svg//wa_main_top.svg
+
+			.ColLP__top__left-tiles
+				include includes/_svg/left-tiles.svg
+
+			.ColLP__top__left
+				.ColLP__top__logo
+					include includes/_svg/buildstore-logo_full.svg
+				.ColLP__top__title= title
+				.ColLP__top__descr= descr
+				.ColLP__top__spacer
+				.ColLP__top__button
+					button.BS_button
+						span Get access now
+					//a.url-link.btn.item-block(href='/accounts/register/' onclick="fbq('track', 'user_tap_sign_up_button')")
+					//    | SPIN THE WHEEL
+
+	section.ColLP__apps
+		.ColLP__apps__wrapper.container
+			include includes/_mixinLPCatalogApp
+			+LPCatalogApp
+			+LPCatalogApp
+			+LPCatalogApp
+
+	section.ColLP__sideloading
+		.container
+			.ColLP__sideloading__wrapper
+				.ColLP__sideloading__picWrapper
+					.ColLP__sideloading__background
+						include includes/_svg/sideloading_BG.svg
+					.ColLP__sideloading__arrow.js-observer
+						include includes/_svg/sideloading_arrow.svg
+				.ColLP__sideloading__inner
+					.ColLP__sideloading__left
+					.ColLP__sideloading__right.js-observer
+						.ColLP__sideloading__title
+							| What is sideloading?
+						.ColLP__sideloading__descr
+							p Sideloading means downloading apps which are not available on&nbsp;the official Appstore. Unlike jailbreaking, it&nbsp;doesn&rsquo;t require any modifications to&nbsp;your iOS device.
+							p Using BuildStore to&nbsp;get apps is&nbsp;easy and doesn&rsquo;t impose any risk on&nbsp;your device or&nbsp;personal data.
+
+	section.ColLP__promocode(style=`background:${BG}`)
+		.ColLP__promocode__wrapper.container.js-observer
+			.ColLP__promocode__pictures
+				.ColLP__promocode__pictures__wrapper
+					.ColLP__promocode__circles
+						include includes/_svg/circles.svg
+					.ColLP__promocode__big-tiles
+						include includes/_svg/left-tiles.svg
+						//include includes/_svg/right-tiles_big.svg
+					.ColLP__promocode__desk
+						span PROMOCODE:&nbsp;
+						span= PROMOCODE
+						//include includes/_svg/promocode.svg
+					.ColLP__promocode__offer
+						include includes/_svg/40off.svg
+
+			.ColLP__promocode__left-tiles
+				include includes/_svg/left-tiles.svg
+
+			.ColLP__promocode__left
+				.ColLP__promocode__logo
+					include includes/_svg/buildstore-logo_full.svg
+				.ColLP__promocode__descr
+					| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				.ColLP__promocode__spacer
+				.ColLP__promocode__button
+					button.BS_button
+						span Activate promocode
+
+	section.ColLP__seo
+		.container
+			.ColLP__seo__wrapper.js-observer
+				.ColLP__seo__title
+					| What is sideloading?
+				.ColLP__seo__descr
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+
+	section.ColLP__comments
+		.container
+			.ColLP__comments__title Lorem Ipsum Comments
+			//.js-observer
+			.ColLP__comments__cards.swiper-container
+				.swiper-wrapper
+					include includes/_mixinLPcomment
+					+LPcomment(
+						'/app-collections_landing/static/assets/app-collections_landing/avatar_LouisTaylor.jpeg',
+						'Louis Taylor',
+						'@loui24fit',
+						'Shout to @builds_io because without the app Channels I wouldn’t see the canelo vs GGG 2 fight in HD 🥊 best money I ever spent!! 🙌🏼🙌🏼🙌🏼'
+					)
+					+LPcomment(
+						'/app-collections_landing/static/assets/app-collections_landing/avatar_Lazy.jpeg',
+						'lazy',
+						'@__ItsLazy',
+						'@builds_io Thanks again guys, quality service at a quality price and I doubt I’ll ever stop using Buildstore :)'
+					)
+					+LPcomment(
+						'/app-collections_landing/static/assets/app-collections_landing/avatar_BenFord.jpeg',
+						'Ben Ford',
+						'@loui24fit',
+						'@builds_io I love your app. Thanks so much for continuing your service! Great jailbreak alternative.'
+					)
+					+LPcomment(
+            '/app-collections_landing/static/assets/app-collections_landing/avatar_LouisTaylor.jpeg',
+            'Louis Taylor',
+            '@loui24fit',
+            'Shout to @builds_io because without the app Channels I wouldn’t see the canelo vs GGG 2 fight in HD 🥊 best money I ever spent!! 🙌🏼🙌🏼🙌🏼'
+					)
+					+LPcomment(
+            '/app-collections_landing/static/assets/app-collections_landing/avatar_Lazy.jpeg',
+            'lazy',
+            '@__ItsLazy',
+            '@builds_io Thanks again guys, quality service at a quality price and I doubt I’ll ever stop using Buildstore :)'
+					)
+
+			.ColLP__comments__cards__pagination
+
+	//section.ColLP__footer(style=`background:${BG}`)

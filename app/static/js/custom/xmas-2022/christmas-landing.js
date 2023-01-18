@@ -1,5 +1,6 @@
 window.onload = () => {
   // ga("send", "event", "User", "user_page_load", "Christmas Landing");
+  console.log('changed!');
 
   const MODAL = {
     body: document.getElementsByTagName('body')[0],
