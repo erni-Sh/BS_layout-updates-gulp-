@@ -1,4 +1,15 @@
 window.onload = () => {
+  // ------ FIX PORT VIEW -----
+  function calculateVh() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+  }
+  calculateVh();
+
+  window.addEventListener('resize', calculateVh);
+  window.addEventListener('orientationchange', calculateVh);
+
+  // ------ on Screen hook -----
   const targets = document.querySelectorAll('.js-observer');
   const options = {
     rootMargin: '0px',
@@ -7,7 +18,6 @@ window.onload = () => {
 
   const startAnimation = (entries, observer) => {
     entries.forEach((e) => {
-      console.log(e.target)
       e.isIntersecting ?
         e.target.classList.add('js_isVisible') :
         e.target.classList.remove('js_isVisible');

@@ -1,5 +1,12 @@
 @import './_variable.scss';
 
+.main_wrapper {
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .container {
   max-width: 990px;
   margin-right: auto;
@@ -268,7 +275,8 @@
   @media screen and (max-width: 960px) {
     height: auto;
     &__wrapper {
-      left: -2.343vw;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100vw;
       border-radius: 0;
       box-shadow: none;

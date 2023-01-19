@@ -3,7 +3,10 @@ mixin LPcomment(avatar, nickname, account, message)
 		.ColLP__comment__top
 			.ColLP__comment__top__left
 				.ColLP__comment__avatar.background-shimmer
-					img(src= avatar)
+					img(
+						src= avatar
+						onload=`this.classList.add('isVisible')`
+					)
 				.ColLP__comment__name= nickname
 			.ColLP__comment__account= account
 		.ColLP__comment__message= message

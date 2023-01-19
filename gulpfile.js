@@ -15,11 +15,12 @@ const gulp = require('gulp'),
   // keys = require('./config_secret.js'),
 
 const distFolder = 'dist/';
+const sourceFolder = 'src';
 
 gulp.task('pug', function(){
   return gulp.src([
-    'app/**/*.pug',
-    '!app/**/_*.pug',
+    `${sourceFolder}/**/*.pug`,
+    `!${sourceFolder}/**/_*.pug`,
   ])
     .pipe(pug({pretty: true}).on('error', notify.onError({
       message: "Error: <%= error.message %>",
@@ -30,7 +31,7 @@ gulp.task('pug', function(){
 });
 
 gulp.task('scss', function(){
-  return gulp.src('app/**/*.scss')
+  return gulp.src(`${sourceFolder}/**/*.scss`)
     .pipe(sourcemaps.init())
     .pipe(wait(1500))
     //compressed
@@ -49,8 +50,8 @@ gulp.task('scss', function(){
 
 gulp.task('js', function () {
   return gulp.src([
-      'app/**/*.js',
-      '!app/**/_*.js',
+      `${sourceFolder}/**/*.js`,
+      `!${sourceFolder}/**/_*.js`,
     ])
     // .pipe(uglify())
     // .pipe(concat('custom.js'))
@@ -59,12 +60,12 @@ gulp.task('js', function () {
 
 gulp.task('assets', function () {
   return gulp.src([
-      'app/**/*.svg',
-      '!app/**/_svg/*.svg', //for includes svg in template
-      'app/**/*.jpeg',
-      'app/**/*.jpg',
-      'app/**/*.png',
-      'app/**/*.css',
+      `${sourceFolder}/**/*.svg`,
+      `!${sourceFolder}/**/_svg/*.svg`, //for includes svg in template
+      `${sourceFolder}/**/*.jpeg`,
+      `${sourceFolder}/**/*.jpg`,
+      `${sourceFolder}/**/*.png`,
+      `${sourceFolder}/**/*.css`,
     ])
     .pipe(gulp.dest(`${distFolder}`));
 });
@@ -122,16 +123,16 @@ gulp.task('clean', function() {
 
 gulp.task('watch-local', function(done){
   gulp.watch([
-    'app/**/*.svg',
-    '!app/**/_svg/*.svg',
-    'app/**/*.jpeg',
-    'app/**/*.jpg',
-    'app/**/*.png',
-    'app/**/*.css',
+    `${sourceFolder}/**/*.svg`,
+    `${sourceFolder}/**/_svg/*.svg`,
+    `${sourceFolder}/**/*.jpeg`,
+    `${sourceFolder}/**/*.jpg`,
+    `${sourceFolder}/**/*.png`,
+    `${sourceFolder}/**/*.css`,
   ], gulp.series('assets'));
-  gulp.watch('app/**/*.scss', gulp.series('scss'));
-  gulp.watch('app/**/*.pug', gulp.series('pug'));
-  gulp.watch('app/**/*.js', gulp.series('js'));
+  gulp.watch(`${sourceFolder}/**/*.scss`, gulp.series('scss'));
+  gulp.watch(`${sourceFolder}/**/*.pug`, gulp.series('pug'));
+  gulp.watch(`${sourceFolder}/**/*.js`, gulp.series('js'));
   done();
 });
 
