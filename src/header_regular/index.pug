@@ -3,6 +3,7 @@ extends ../layout/_tmpl
 block styles
 	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/index.css')
 	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/instapage.css')
+	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/landing_header.css')
 	link(rel='stylesheet', href='/header_regular/static/css/BS_common.css')
 
 block scripts
@@ -16,9 +17,12 @@ block main
 		.section-block
 			.section-inner.section-fit.section-relative
 				.landingTop__front
-					img.landingTop__circles(src='/header_regular/static/assets/soul_landing/headerRegular_circles.svg' alt='circles' onload="this.classList.add('landingTop__circles_visible')")
-					img.landingTop__tiles(src='/header_regular/static/assets/soul_landing/headerRegular_tiles.svg' alt='circles' onload="this.classList.add('landingTop__tiles_visible')")
-				img.landingTop__tiles_additional(src='/header_regular/static/assets/soul_landing/headerRegular_tiles_additional.svg' alt='circles' onload="this.classList.add('landingTop__tiles_additional_visible')")
+					.landingTop__circles
+						include ./includes/_svg/headerRegular_circles.svg
+					.landingTop__tiles
+						include ./includes/_svg/headerRegular_tiles.svg
+				.landingTop__tiles_additional
+					include ./includes/_svg/headerRegular_tiles_additional.svg
 				#element-123.widget.item-absolute
 					.contents.cropped.item-block
 						img.item-content-box.item-block(alt='' src='https://s3.amazonaws.com/cdn.builds.io/newstatic/assets/soul_landing/logo.png')
