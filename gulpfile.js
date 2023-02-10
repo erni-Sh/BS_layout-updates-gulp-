@@ -61,7 +61,7 @@ gulp.task('js', function () {
 gulp.task('assets', function () {
   return gulp.src([
       `${sourceFolder}/**/*.svg`,
-      `!${sourceFolder}/**/_svg/*.svg`, //for includes svg in template
+      `!${sourceFolder}/**/_svg/*.svg`, //for layout svg in template
       `${sourceFolder}/**/*.jpeg`,
       `${sourceFolder}/**/*.jpg`,
       `${sourceFolder}/**/*.png`,
