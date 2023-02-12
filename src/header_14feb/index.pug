@@ -1,0 +1,67 @@
+extends ../layout/_tmpl
+
+block title
+	title 14 february
+
+block styles
+	link(rel='stylesheet', href='/header_14feb/static/css/custom/soul_landing/index.css')
+	link(rel='stylesheet', href='/header_14feb/static/css/custom/soul_landing/instapage.css')
+	link(rel='stylesheet', href='/header_14feb/static/css/custom/soul_landing/landing_header.css')
+	link(rel='stylesheet', href='/header_14feb/static/css/BS_common.css')
+
+block scripts
+	script(src='/header_14feb/static/js/custom/header_14feb.js')
+	//script(src='/app-collections_landing/static/js/custom/app-collections_landing.js')
+
+block main
+	section.section.section-relative#landing-header
+		.section-holder-border.item-block.item-absolute
+		.section-holder-overlay.item-block.item-absolute
+		.section-block
+			.section-inner.section-fit.section-relative
+				.landingTop__arts
+					.landingTop__arts__inner
+						.landingTop__hearts
+							include ./includes/_svg/hearts.svg
+						.landingTop__mail
+							include ./includes/_svg/email.svg
+						.landingTop__open_me
+							include ./includes/_svg/open_me.svg
+
+				#element-123.widget.item-absolute
+					.contents.cropped.item-block
+						img.item-content-box.item-block(alt='' src='https://s3.amazonaws.com/cdn.builds.io/newstatic/assets/soul_landing/logo.png')
+				#element-122.widget.item-absolute
+					.contents.cropped.item-block
+						img.item-content-box.item-block(alt='' src='https://s3.amazonaws.com/cdn.builds.io/newstatic/assets/soul_landing/buildstore-title.svg')
+				#element-2.widget.item-absolute.headline
+					.contents
+						h1
+							p.x_e0654353
+								span.x_f2074b6c February 14&nbsp;is always a&nbsp;special day, as&nbsp;it&nbsp;is&nbsp;Saint Valentine&rsquo;s Day!
+				#element-127.widget.item-absolute.headline
+					.contents
+						h1
+							p.x_9a9d3d17
+								span.x_736e2a90
+									| To&nbsp;show our devotion, we&nbsp;created a&nbsp;love letter to&nbsp;our subscribers
+				#element-4.widget.item-absolute
+					a.url-link.btn.item-block(href='/accounts/register/' onclick="fbq('track', 'user_tap_sign_up_button')") HUGS AND KISSES
+
+	section.landingModal
+		.landingModal__inner
+			.landingModal__descr
+				| There is&nbsp;nothing better than a&nbsp;love unless it&nbsp;is&nbsp;a&nbsp;love with great apps
+			.landingModal__discount -50
+				span %
+			.landingModal__heart
+				include includes/_svg/white_heart.svg
+			.landingModal__buttons
+				.landingModal__promocode
+					| TRULOVE50
+					.landingModal__promocode__copy
+						include includes/_svg/copy_icon.svg
+					.landingModal__promocode__alertCopied
+						| Copied!
+				.landingModal__link.BS_button
+						a(href='/accounts/register/') USE PROMOCODE
