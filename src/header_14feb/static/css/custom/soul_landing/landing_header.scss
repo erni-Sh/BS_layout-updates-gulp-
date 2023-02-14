@@ -49,6 +49,7 @@
 
 .landingModal {
   position: absolute;
+  top: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(44,5,63, 0.9);
@@ -108,6 +109,7 @@
     margin: auto;
     width: 100%;
     max-width: 310px;
+    min-height: 48px;
     font-size: 16px;
     line-height: 24px;
     text-align: center;
@@ -161,7 +163,7 @@
     cursor: pointer;
     transition: .1s ease all;
 
-    &__copy {
+    &__copy > svg {
       position: absolute;
       right: 17px;
       top: 50%;
