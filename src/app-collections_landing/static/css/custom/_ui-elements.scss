@@ -40,14 +40,27 @@
 
   &__left {
     margin-right: calc(16/16*1em);
+    width: calc(81/16*1em);
   }
   &__right {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: calc(160/16*1em);
     &__top {
-      height: calc(75/16*1em);
+      position: relative;
+      height: calc(79/16*1em);
       overflow: hidden;
+      //&:after {
+      //  content: '';
+      //  position: absolute;
+      //  background: transparent;
+      //  background: linear-gradient(180deg,transparent 73%,rgba(255,255,255,1) 100%);
+      //  bottom: 0;
+      //  left: 0;
+      //  right: 0;
+      //  height: 3px;
+      //}
     }
     &__bottom {
       display: flex;
@@ -112,7 +125,7 @@
   }
   &__size {
     display: inline-block;
-    width: calc(52/16*1em);
+    width: calc(60/16*1em); //52
     &__count {
       font-size: calc(10/16*1em);
       font-weight: 800;

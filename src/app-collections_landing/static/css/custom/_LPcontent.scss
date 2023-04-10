@@ -5,6 +5,7 @@
   height: calc(var(--vh) * 100);
   overflow-y: auto;
   overflow-x: hidden;
+  //-webkit-font-smoothing: subpixel-antialiased;
 }
 
 .container {
@@ -33,9 +34,10 @@
   &__left {
     position: relative;
     padding: 76px 0 0;
-    max-width: 52%;
+    max-width: 47%;
   }
   &__logo {
+    display: block;
     margin-bottom: 108px;
     & > svg {
       width: 195px;
@@ -75,9 +77,10 @@
 
   &__pictures {
     position: absolute;
-    width: 82.64vw;
-    min-width: 1024px;
-    max-width: 1312px;
+    //width: 82.64vw;
+    //min-width: 1024px;
+    //max-width: 1312px;
+    width: 1024px;
     left: 72%;
     bottom: 254px;
 
@@ -100,10 +103,10 @@
 
   &__app-icon {
     position: absolute;
-    width: 42.747%;
+    width: 53.711%;
     height: auto;
-    top: 25.1%;
-    left: 55%;
+    top: 21.2%;
+    left: 49%;
     transform: translateX(-50%);
     & > img {
       width: 100%;
@@ -126,6 +129,10 @@
   }
 
   @media screen and (max-width: 661px){
+    &__wrapper {
+      min-height: auto;
+    }
+
     &__left {
       max-width: 100%;
       padding: 30px 15px 0;
@@ -149,21 +156,24 @@
     //}
 
     &__spacer {
-      height: 99.3vw;
-      min-height: 276px;
-      max-height: 358px;
+      //height: 91.3vw;
+      //min-height: 276px;
+      //max-height: 358px;
+      height: 292px;
     }
 
     &__button {
+      display: block;
       text-align: center;
-      padding-bottom: 69px;
+      min-height: 119px;
+      //padding-bottom: 69px;
     }
 
     &__pictures {
-      width: 263vw;
+      width: 732px; //229vw;
       max-width: 1138px;
-      bottom: 233px;
-      left: 43%;
+      bottom: 212px;
+      left: 50%;
     }
   }
 
@@ -188,7 +198,7 @@
   }
   @media screen and (max-width: $mobile) {
     &__wrapper {
-      top: -43px;
+      top: -33px;
       gap: 24px 22px;
     }
   }
@@ -196,7 +206,8 @@
 
 .ColLP__sideloading {
   position: relative;
-  height: 243px;
+  //height: 243px;
+  padding-bottom: 56px;
   &__wrapper {
     position: relative;
     width: 100%;
@@ -214,7 +225,8 @@
     padding: 54px;
   }
   &__left {
-    width: 625px;
+    width: 277px;
+    min-width: 277px;
   }
   &__right {
     color: $LP_basic_black;
@@ -272,8 +284,24 @@
     }
   }
 
+  &__rocket {
+    position: absolute;
+    top: 52px;
+    left: 8px;
+    & > svg {
+      transform: translate(0, 50%);
+      opacity: 0;
+      transition: $transition;
+    }
+    &.js_isVisible > svg{
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
   @media screen and (max-width: 960px) {
-    height: auto;
+    padding-bottom: 0;
+    //height: auto;
     &__wrapper {
       left: 50%;
       transform: translateX(-50%);
@@ -289,6 +317,12 @@
       width: 100%;
       height: 242px;
     }
+
+    &__rocket {
+      top: 61px;
+      left: calc(50vw - 7px);
+      transform: translateX(-50%);
+    }
   }
   @media screen and (max-width: $mobile) {
     &__title {
@@ -300,17 +334,21 @@
       //font-size: 3.75vw;
       //line-height: 5.115vw;
     }
-    &__picWrapper {
-      left: -20px;
-      top: -19px;
+    &__arrow {
+      left: 50vw;
+      transform: translateX(-50%);
     }
+    //&__picWrapper {
+    //  left: -20px;
+    //  top: -19px;
+    //}
   }
 }
 
 .ColLP__promocode {
   min-height: 550px;
   color: $white;
-  //background: $WA_BG;
+  margin-bottom: 56px;
   overflow: hidden;
   &__wrapper {
     min-height: 550px;
@@ -319,7 +357,7 @@
   &__left {
     position: relative;
     padding: 167px 0 0;
-    max-width: 51%;
+    max-width: 42%;
   }
   &__logo {
     margin-bottom: 31px;
@@ -342,6 +380,7 @@
   }
 
   &__button {
+    display: block;
     max-width: 960px;
     margin: auto;
   }
@@ -404,14 +443,31 @@
 
   &__offer {
     position: absolute;
-    width: 43%;
-    height: 16.638%;
+    //width: 43%;
+    //height: 16.638%;
     //padding-bottom: 38.6%;
-    top: 39.8%;
+    top: 54.8%;
     //top: 0;
-    left: 31.5%;
+    //left: 31.5%;
+    left: 53.5%;
     transform: scale(.9);
     transition: $transition;
+
+    &__inner {
+      position: absolute;
+      font-weight: 800;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility !important;
+      font-style: normal;
+      //font-size: 122.356px;
+      font-size: 12.32vw;
+      text-transform: capitalize;
+      text-align: center;
+      white-space: nowrap;
+      transform: rotate(-3.29deg) translate(-50%, -100%);
+      color: #FAF3FF;
+      text-shadow: -2px 2px 1px #ba85e9;
+    }
   }
 
   &__wrapper.js_isVisible &__offer {
@@ -421,11 +477,13 @@
   &__desk {
     position: absolute;
     padding: 0 1.4%;
-    top: 52.6%;
+    top: 52.3%;
     right: 47%;
+
     background: $yellow;
     border-radius: 14px;
-    font-weight: 900;
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
     font-size: 32px;
     line-height: 56.5px;
     text-align: center;
@@ -458,7 +516,49 @@
     opacity: 1;
     animation: fromBottomTwo 2s cubic-bezier(.14,.58,.12,1.13) forwards;
   }
-  
+
+  &__alert {
+    position: fixed;
+    display: inline-block;
+    background: $white;
+    color: $basic_black;
+    width: 100%;
+    max-width: 349px;
+    padding: 23px 0;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 11px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 55px;
+    z-index: 200;
+    white-space: nowrap;
+    transition: $transition;
+    top: -200px;
+    opacity: 0;
+    visibility: hidden;
+
+    &_isVisible {
+      top: 30px;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @media screen and (min-width: 991px) {
+    &__offer {
+      top: 54%;
+      &__inner {
+        font-size: 122px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    margin-bottom: 0;
+  }
+
   @media screen and (max-width: 661px) {
     &__left {
       padding: 72px 15px 0;
@@ -483,13 +583,19 @@
 
     &__button {
       text-align: center;
-      padding-bottom: 94px;
+      min-height: 144px;
+      //padding-bottom: 94px;
     }
     &__pictures {
       width: 214vw;
       left: 44%;
       min-width: auto;
       bottom: calc(246px + 8vw);
+    }
+    &__offer {
+      &__inner {
+        font-size: 21.875vw; // 70px;
+      }
     }
     &__desk {
       padding: 0 22px;
@@ -508,38 +614,38 @@
   
 }
 
-.ColLP__seo {
-  &__wrapper {
-    background: white;
-    color: $LP_basic_black;
-    padding: 64px 0;
-    opacity: 0;
-    filter: blur(12px);
-    transition: .4s cubic-bezier(0.550, 0.085, 0.680, 0.530);
-
-    &.js_isVisible {
-      opacity: 1;
-      filter: blur(0);
-    }
-  }
-
-  &__title {
-    @extend .LP__title;
-    margin-bottom: 13px;
-  }
-
-  &__descr {
-    @extend .LP__descr;
-    p + p {
-      margin-top: 45px;
-    }
-  }
-  @media screen and (max-width: 961px) {
-    &__wrapper {
-      padding: 64px 15px;
-    }
-  }
-}
+//.ColLP__seo {
+//  &__wrapper {
+//    background: white;
+//    color: $LP_basic_black;
+//    padding: 64px 0;
+//    opacity: 0;
+//    filter: blur(12px);
+//    transition: .4s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+//
+//    &.js_isVisible {
+//      opacity: 1;
+//      filter: blur(0);
+//    }
+//  }
+//
+//  &__title {
+//    @extend .LP__title;
+//    margin-bottom: 13px;
+//  }
+//
+//  &__descr {
+//    @extend .LP__descr;
+//    p + p {
+//      margin-top: 45px;
+//    }
+//  }
+//  @media screen and (max-width: 961px) {
+//    &__wrapper {
+//      padding: 64px 15px;
+//    }
+//  }
+//}
 
 .ColLP__comments {
   padding: 66px 0;
