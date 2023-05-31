@@ -1,0 +1,144 @@
+$transition: .3s ease all;
+
+.search-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+
+  padding: 16px 0 16px 48px;
+  background: transparent;
+  color: #252525;
+  border: 1px solid #E3E3E3;
+  border-radius: 25px;
+  outline: none;
+  z-index: 2;
+  transition: $transition;
+
+  &__form {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  &__fieldset {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    background: #F3F3F3;
+    border-radius: 25px;
+    z-index: 2;
+  }
+
+  &__icon-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    z-index: 3;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    svg path {
+      transition: $transition;
+    }
+  }
+
+  &__icon-clear {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    z-index: 3;
+    transition: $transition;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &::placeholder {
+    color: black;
+    opacity: 0.2;
+  }
+
+  &:focus, &:focus-visible {
+    border: 1px solid #6550BE;
+  }
+
+  &:focus, &:focus-visible ~ &__icon-search {
+    svg path {
+      fill: #6550BE;
+    }
+  }
+
+  // opened input
+  &:not(:placeholder-shown), &:focus {
+    width: 356px;
+    max-width: 100%;
+    padding-right: 39px;
+  }
+
+  &:focus ~ &__icon-search,
+  &:not(:placeholder-shown) ~ &__icon-search {
+    z-index: 3;
+  }
+
+  // not-empty input
+  &:not(:placeholder-shown) ~ &__icon-clear {
+    opacity: 1;
+  }
+
+
+  //&:not(:placeholder-shown) ~ &__suggestions {
+  //  max-height: 210px;
+  //}
+
+  &__suggestions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    //height: 290px;
+    //max-height: 0;
+    overflow: hidden;
+    transform: scaleY(0);
+    transform-origin: 0 25px;
+    padding: 0 17px;
+    background: #E3E3E3;
+    border-radius: 25px;
+    transition: $transition;
+    z-index: 1;
+
+    &_isActive {
+      //max-height: 290px;
+      transform: scaleY(1);
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 63px 0 13px;
+      font-weight: 800;
+    }
+    &__clear {
+      color: #6550BE;
+      cursor: pointer;
+    }
+
+    &__content {
+      max-height: 175px;
+      overflow: scroll;
+      margin-bottom: 17px;
+    }
+
+    &__item {
+      padding: 4px 0;
+      cursor: pointer;
+    }
+  }
+
+}

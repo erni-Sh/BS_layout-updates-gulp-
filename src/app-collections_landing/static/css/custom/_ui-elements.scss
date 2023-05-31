@@ -39,44 +39,40 @@
   }
 
   &__left {
-    margin-right: calc(16/16*1em);
-    width: calc(81/16*1em);
+    position: relative;
+    //display: -webkit-box;
+    //-webkit-box-orient: vertical;
+    margin-right: calc(10/16*1em);
+    width: calc(177/16*1em);
+    max-height: calc(139/16*1em);
+    overflow: hidden;
+    //-webkit-line-clamp: 7;
+    //&:after {
+    //  position: absolute;
+    //  content: ' ';
+    //  left: 0;
+    //  right: 0;
+    //  bottom: 0;
+    //  height: calc(43/16*1em);
+    //  background: linear-gradient(180deg,transparent 50%,rgba(255,255,255,1) 100%);
+    //}
   }
   &__right {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: calc(160/16*1em);
-    &__top {
-      position: relative;
-      height: calc(79/16*1em);
-      overflow: hidden;
-      //&:after {
-      //  content: '';
-      //  position: absolute;
-      //  background: transparent;
-      //  background: linear-gradient(180deg,transparent 73%,rgba(255,255,255,1) 100%);
-      //  bottom: 0;
-      //  left: 0;
-      //  right: 0;
-      //  height: 3px;
-      //}
-    }
-    &__bottom {
-      display: flex;
-      justify-content: space-between;
-    }
+    width: calc(70/16*1em);
   }
   &__icon {
-    width: calc(80/16*1em);
-    height: calc(80/16*1em);
+    width: calc(70/16*1em);
+    height: calc(70/16*1em);
     border-radius: calc(16/16*1em);
     overflow: hidden;
-    margin-bottom: calc(18/16*1em);
+    margin-bottom: calc(10/16*1em);
 
     & > img {
       width: 100%;
       height: 100%;
+      border-radius: calc(16/16*1em);
       opacity: 0;
       transition: 0.5s ease opacity;
 
@@ -85,69 +81,56 @@
       }
     }
   }
-  &__rateStars {
-    white-space: nowrap;
-    margin-bottom: calc(9/16*1em);
-    width: calc(81/16*1em);
-    display: flex;
 
-    svg {
-      width: calc(16/16*1em);
-      height: calc(15/16*1em);
-    }
-    //svg + svg {
-    //  margin-left: calc(-4.2/16*1em);
-    //}
-    svg path {
-      fill: $yellow;
-      //fill: #A4BCE1;
-    }
-  }
-  &__rateText {
-    white-space: nowrap;
-    font-size: calc(12/16*1em);
-    color: $LP_gray;
-    & > span:first-child {
-      font-weight: 700;
-    }
-  }
   &__title {
     font-size: calc(16/16*1em);
     font-weight: 700;
     color: $LP_basic_black;
-    margin-bottom: calc(6/16*1em);
+    min-height: calc(27/16*1em);
+    max-height: calc(62/16*1em);
+    margin-bottom: calc(10/16*1em);
   }
   &__descr {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    max-height: calc(85.5/12*1em);
+    overflow: hidden;
+
     font-size: calc(12/16*1em);
     font-weight: 400;
     letter-spacing: calc(-0.04/12*1em);
     color: $LP_basic_black;
   }
   &__size {
-    display: inline-block;
-    width: calc(60/16*1em); //52
-    &__count {
-      font-size: calc(10/16*1em);
-      font-weight: 800;
-      background: #F2F7FF;
-      border-radius: calc(24/10*1em);
-      height: calc(14/10*1em);
-      width: 100%;
-      text-align: center;
-      color: $LP_basic_black;
-      margin-bottom: calc(10/10*1em);
+    display: block;
+    width: 100%;
+    font-size: calc(10/16*1em);
+    font-weight: 800;
+    background: #F2F7FF;
+    border-radius: calc(24/10*1em);
+    line-height: calc(17/10*1em);
+    color: $LP_basic_black;
+    margin-bottom: calc(10/10*1em);
+
+    &__icon {
+      position: absolute;
+      & > svg {
+        width: 17px;
+        height: 17px;
+      }
     }
-    &__label {
-      font-weight: 400;
-      font-size: calc(12/16*1em);
-      width: 100%;
+    &__count {
+      padding-left: 18px;
+      padding-right: 2px;
       text-align: center;
-      color: $LP_gray;
+      white-space: nowrap;
     }
   }
+
   &__button {
     display: inline-block;
-    width: calc(80/10*1em);
+    width: calc(70/10*1em);
     height: calc(32/10*1em);
     line-height: calc(32/10*1em);
     background: $yellow;
@@ -158,9 +141,26 @@
     font-size: calc(10/16*1em);
     cursor: pointer;
     transition: $transition;
+
+    &-wrapper {
+      height: calc(32/16*1em);
+      width: calc(70/16*1em);
+    }
+
     &:hover {
       color: $LP_basic_black;
     }
+  }
+
+  &__loader {
+    animation: rotation 1s linear infinite;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: none;
+    height: calc(32/16*1em);
+    line-height: calc(32/16*1em);
+    width: calc(32/16*1em);
+    margin: auto;
   }
 
   @media screen and (max-width: 600px) and (min-width: $mobile + 1){
@@ -171,6 +171,15 @@
     font-size: calc(16/320*100vw);
   }
 
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .ColLP__comment {

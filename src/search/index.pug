@@ -1,0 +1,26 @@
+extends ../layout/_tmpl
+
+block styles
+	link(rel='stylesheet', href='/header_14feb/static/css/custom/soul_landing/index.css')
+	link(rel='stylesheet', href='/header_14feb/static/css/custom/soul_landing/instapage.css')
+	link(rel='stylesheet', href='/header_14feb/static/css/BS_common.css')
+	link(rel='stylesheet', href='/search/static/css/custom/app_search.css')
+
+block scripts
+	script(src='/search/static/js/custom/app_search.js')
+block main
+	form.search-input__form
+		fieldset.search-input__fieldset
+			input(type='text' placeholder='Search apps').search-input
+			button(type='submit').search-input__icon-search
+				include includes/_svg/icon_search.svg
+			.search-input__icon-clear
+				include includes/_svg/icon_clear.svg
+		.search-input__suggestions
+			.search-input__suggestions__header
+				.search-input__suggestions__title
+					| Recent Searches
+				.search-input__suggestions__clear
+					| Clear
+			.search-input__suggestions__content
+
