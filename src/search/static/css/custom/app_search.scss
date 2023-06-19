@@ -2,16 +2,13 @@ $transition: .3s ease all;
 
 .search-input {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   height: 50px;
   width: 50px;
 
-  padding: 16px 0 16px 48px;
+  padding: 16px 0;
   background: transparent;
   color: #252525;
-  border: 1px solid #E3E3E3;
+  border: 2px solid #E3E3E3;
   border-radius: 25px;
   outline: none;
   z-index: 2;
@@ -19,8 +16,17 @@ $transition: .3s ease all;
 
   &__form {
     position: absolute;
-    right: 50%;
-    transform: translateX(50%);
+    right: 0;
+    top: 38px;
+    background: white;
+    opacity: 0;
+    z-index: -1;
+    transition: $transition;
+
+    &_isReady {
+      opacity: 1;
+      z-index: 10;
+    }
   }
 
   &__fieldset {
@@ -32,18 +38,27 @@ $transition: .3s ease all;
     background: #F3F3F3;
     border-radius: 25px;
     z-index: 2;
+    transition: $transition;
+
+    &_isOpened {
+      background: white;
+    }
   }
 
   &__icon-search {
     position: absolute;
+    width: 18px;
+    height: 18px;
     top: 50%;
     transform: translateY(-50%);
     left: 16px;
-    z-index: 3;
+    z-index: 1;
     padding: 0;
     margin: 0;
     border: none;
+    outline: none;
     cursor: pointer;
+    background: transparent;
     svg path {
       transition: $transition;
     }
@@ -53,20 +68,26 @@ $transition: .3s ease all;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
     right: 16px;
     z-index: 3;
     transition: $transition;
     opacity: 0;
+    visibility: hidden;
     cursor: pointer;
+    svg {
+      float: left;
+    }
   }
 
   &::placeholder {
     color: black;
-    opacity: 0.2;
+    opacity: 0;
   }
 
   &:focus, &:focus-visible {
-    border: 1px solid #6550BE;
+    border: 2px solid #6550BE;
   }
 
   &:focus, &:focus-visible ~ &__icon-search {
@@ -75,46 +96,52 @@ $transition: .3s ease all;
     }
   }
 
-  // opened input
-  &:not(:placeholder-shown), &:focus {
+  &:not(:placeholder-shown), &:focus,
+  &_isOpened {
     width: 356px;
-    max-width: 100%;
     padding-right: 39px;
+    padding-left: 48px;
+
+    &::placeholder {
+      opacity: 0.2;
+    }
   }
 
-  &:focus ~ &__icon-search,
-  &:not(:placeholder-shown) ~ &__icon-search {
+  &_isOpened ~ &__icon-search {
     z-index: 3;
   }
 
   // not-empty input
   &:not(:placeholder-shown) ~ &__icon-clear {
     opacity: 1;
+    visibility: visible;
   }
 
-
-  //&:not(:placeholder-shown) ~ &__suggestions {
-  //  max-height: 210px;
-  //}
+  @media screen and (max-width: 611px) {
+    &__form {
+      top: 17px;
+    }
+    &:not(:placeholder-shown), &:focus,
+    &_isOpened {
+      width: calc(100vw - 30px);
+    }
+  }
+  // --------- SUGGESTION --------
 
   &__suggestions {
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    top: 0;
-    //height: 290px;
-    //max-height: 0;
-    overflow: hidden;
     transform: scaleY(0);
     transform-origin: 0 25px;
     padding: 0 17px;
-    background: #E3E3E3;
+    background: #F3F3F3;
     border-radius: 25px;
     transition: $transition;
     z-index: 1;
 
     &_isActive {
-      //max-height: 290px;
       transform: scaleY(1);
     }
 
@@ -131,8 +158,28 @@ $transition: .3s ease all;
 
     &__content {
       max-height: 175px;
-      overflow: scroll;
+      overflow-y: auto;
       margin-bottom: 17px;
+
+      transition: 0.4s ease all;
+      background-color: inherit;
+      -webkit-background-clip: text;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border: 19px solid transparent;
+        border-radius: 1000px;
+        background-color: inherit;
+        background-clip: padding-box;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 1000px;
+        background-color: #bbbaba;
+        background-clip: padding-box;
+      }
     }
 
     &__item {
@@ -140,5 +187,4 @@ $transition: .3s ease all;
       cursor: pointer;
     }
   }
-
 }

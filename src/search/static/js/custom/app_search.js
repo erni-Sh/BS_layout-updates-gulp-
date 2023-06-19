@@ -2,26 +2,45 @@ window.addEventListener('DOMContentLoaded', () => {
 
   let timer;
   const AppSearch = {
-    form:            getElByCl('search-input__form'),
-    input:           getElByCl('search-input'),
-    clearInputBtn:   getElByCl('search-input__icon-clear'),
-    suggestions:     getElByCl('search-input__suggestions'),
-    suggContent:     getElByCl('search-input__suggestions__content'),
-    clearHistoryBtn: getElByCl('search-input__suggestions__clear'),
+    form:              getElByCl('search-input__form'),
+    fieldset:          getElByCl('search-input__fieldset'),
+    input:             getElByCl('search-input'),
+    clearInputBtn:     getElByCl('search-input__icon-clear'),
+    suggestions:       getElByCl('search-input__suggestions'),
+    suggContent:       getElByCl('search-input__suggestions__content'),
+    clearHistoryBtn:   getElByCl('search-input__suggestions__clear'),
+
+    appCategories:     document.querySelectorAll('div[id^="category_id_"]'),
+    appItems:          [...document.querySelectorAll('.app-item__wrapper')].map(el => el.cloneNode(true)),
+
+    searchResultWrap:  getElByCl('search-result__wrapper'),
+    searchResultCount: getElByCl('search-result__count'),
+    searchResult:      getElByCl('search-result'),
+
 
     init() {
-      this.input.addEventListener('input', (e) => this.checkSugg());
+      this.form.classList.add('search-input__form_isReady');
 
-      this.input.addEventListener('focus', (e) => this.checkSugg());
+      this.input.addEventListener('input', () => this.checkSugg());
+
+      this.input.addEventListener('focus', () => {
+        AppSearch.openInput();
+        AppSearch.checkSugg();
+      });
 
       document.addEventListener('click', e => {
-        if (!AppSearch.form.contains(e.target)) AppSearch.closeSugg();
-      })
+        if (!AppSearch.form.contains(e.target)) {
+          AppSearch.closeSugg();
+          if(!AppSearch.input.value) {
+            AppSearch.closeInput();
+            AppSearch.closeSearchResult();
+          }
+        }
+      });
 
       this.clearInputBtn.addEventListener('click', () => {
         AppSearch.input.value = '';
-        AppSearch.input.focus();
-        AppSearch.closeSugg();
+        AppSearch.closeSearchResult();
       });
 
       this.clearHistoryBtn.addEventListener('click', () => {
@@ -31,18 +50,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
       this.form.addEventListener('submit', (e) => {
         e.preventDefault();
-        AppSearch.setHistorySearch(AppSearch.input.value);
+        AppSearch.input.blur();
         AppSearch.closeSugg();
-        // here searching
-        console.log(AppSearch.input.value);
+        if(AppSearch.input.value) {
+          AppSearch.setHistorySearch();
+          AppSearch.searchApps();
+        } else {
+          AppSearch.closeSearchResult();
+        }
       });
+    },
+
+    openInput() {
+      this.input.classList.add('search-input_isOpened');
+      this.fieldset.classList.add('search-input__fieldset_isOpened');
+    },
+
+    closeInput() {
+      this.input.classList.remove('search-input_isOpened');
+      this.fieldset.classList.remove('search-input__fieldset_isOpened');
     },
 
     checkSugg() {
       clearTimeout(timer);
       const value = this.input.value;
       const historySearch = this.getHistorySearch();
-      if(!value || !historySearch.length) {this.closeSugg(); return}
+      if(!historySearch.length) {this.closeSugg(); return}
 
       const suggestions = historySearch.filter(l => value ? l.toLowerCase().includes(value.toLowerCase()) : l);
       if(!suggestions.length) {this.closeSugg(); return}
@@ -53,37 +86,70 @@ window.addEventListener('DOMContentLoaded', () => {
     openSugg(suggestions) {
       timer = setTimeout(() => {
         this.suggContent.innerHTML = '';
-        suggestions
-          .map(label => {
-            let div = document.createElement('div');
-            div.className = 'search-input__suggestions__item';
-            div.innerHTML = label;
-            div.onclick = () => {
-              AppSearch.input.value = label;
-              AppSearch.closeSugg();
-            }
-            AppSearch.suggContent.append(div);
-          }
-        );
+
+        suggestions.map(label => {
+          let div = document.createElement('div');
+          div.className = 'search-input__suggestions__item';
+          div.innerHTML = label;
+          div.onclick = () => {
+            AppSearch.input.value = label;
+            AppSearch.searchApps();
+            AppSearch.closeSugg();
+          };
+          AppSearch.suggContent.append(div);
+        });
 
         this.suggestions.classList.add('search-input__suggestions_isActive');
-      }, 700)
+      }, 300)
     },
 
     closeSugg() {
       clearTimeout(timer);
       this.suggestions.classList.remove('search-input__suggestions_isActive');
     },
+
     getHistorySearch() {
       return JSON.parse(localStorage.search_history || '[]');
     },
-    setHistorySearch(value) {
+    setHistorySearch() {
+      const value = this.input.value;
       const oldHistorySearch = this.getHistorySearch();
-      localStorage.search_history = JSON.stringify([value, ...oldHistorySearch.filter(v => v !== value)])
+      localStorage.search_history = JSON.stringify([value, ...oldHistorySearch.filter(v => v !== value)].splice(0, 30));
     },
     clearHistorySearch() {
       localStorage.search_history = '[]';
     },
+
+    openSearchResult() {
+      this.appCategories.forEach(e => e.classList.add('category__wrapper_isHidden'));
+      this.searchResultWrap.classList.remove('search-result__wrapper_isHidden');
+    },
+
+    closeSearchResult() {
+      AppSearch.searchResult.innerHTML = '';
+      this.appCategories.forEach(e => e.classList.remove('category__wrapper_isHidden'));
+      this.searchResultWrap.classList.add('search-result__wrapper_isHidden');
+    },
+
+    searchApps() {
+      const value = this.input.value;
+
+      const findedApps = this.appItems.filter(app =>
+        app.querySelector('.app-item__title').textContent.toLowerCase().includes(value.toLowerCase()));
+
+      this.searchResultCount.innerText =
+        findedApps.length ? `Search results (${findedApps.length.toString()})` : `No results`;
+
+      AppSearch.searchResult.innerHTML = '';
+      findedApps.forEach(app => AppSearch.searchResult.appendChild(app));
+
+      [...AppSearch.searchResult.querySelectorAll('a')].map(e => {
+        e.addEventListener('click', () => window.location.href = e.dataset.url);
+      });
+
+      this.openSearchResult();
+    },
+
   };
   AppSearch.init();
 
