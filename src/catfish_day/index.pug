@@ -24,26 +24,55 @@ block main
 					| To&nbsp;make the Catfish grow, you need to&nbsp;feed&nbsp;it. The bigger the Catfish, the bigger the BuildStore subscription discount you can get!
 				.catfishTop__spacer
 				.catfishTop__button
-					a(href='')
+					a(href='#!')
 						button.BS_button
-							span Catch the Catfish with 5% off
+							span Catch the Catfish with&nbsp;
+								span.catfishTop__button__promocode 10%
+								| &nbsp;off
 
 			.catfishTop__right
 				.catfishTop__weight
-					span 265
+					span 1
 					span lb
-					.catfishTop__updateWeight +5
+					.catfishTop__updateWeight
 				.catfishTop__clicker
 					include includes/_svg/feed.svg
 					span FEED
 				.catfishTop__reactions
-					.catfishTop__reaction__three
+					.catfishTop__reaction
 						svg(viewBox="0 0 98 36" width=98 height=36)
 							text(x=7 y=28) Wow!!
-							text(x=7 y=28) Wow!!
-					.catfishTop__reaction__two
+							text(x=7 y=28 fill='#FF6A6A') Wow!!
+					.catfishTop__reaction
 						svg(viewBox="0 0 245 36" width=245 height=36)
 							text(x=7 y=28) Awesome! 20%
-							text(x=7 y=28) Awesome! 20%
-					.catfishTop__reaction__one Om nom nom
+							text(x=7 y=28 fill='#FACE39') Awesome! 20%
+					.catfishTop__reaction
+						| Om nom nom
+
+				.catfishTop__notify
+					| Ops, your fish gone...
+
+	section.landingModal
+		.landingModal__inner
+			.landingModal__close
+				include ./includes/_svg/close_modal.svg
+			.landingModal__title
+				| Congrats!
+			.landingModal__catfish
+				include ./includes/_svg/catfish_body.svg
+			.landingModal__totalCount
+				span 1
+				span lb
+			.landingModal__discount 20% OFF
+
+			.landingModal__promocode
+				.landingModal__promocode__text
+					| NAUGHTY10
+				.landingModal__promocode__copy
+					include includes/_svg/copy_icon.svg
+				.landingModal__promocode__alertCopied
+					| Copied!
+			.landingModal__link.BS_button
+				a(href='/accounts/register/') USE PROMOCODE
 

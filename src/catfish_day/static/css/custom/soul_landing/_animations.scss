@@ -1,0 +1,77 @@
+@keyframes BGMove {
+  0%{
+    background-position: 50% 44%;
+  }
+  100% {
+    background-position: 50% 58%;
+  }
+}
+
+@keyframes fishRotate {
+  0%    {transform: translate(-50%, -50%) rotate(3deg);}
+  100%  {transform: translate(-50%, -50%) rotate(-3deg);}
+}
+
+@keyframes fishSwimming {
+  0%    {transform: scale(1);}
+  100%  {transform: scale(1.05);}
+}
+
+@keyframes fishShadow {
+  0%    {transform: scale(1);}
+  100%  {transform: scale(0.90);}
+}
+
+@keyframes reactionMove {
+  0% {
+    bottom: 0px;
+    right: 0px;
+    transform: rotate(-4.22deg);
+    opacity: 0;
+  }
+  1% {
+    bottom: 0px;
+    right: 0px;
+    transform: rotate(-4.22deg);
+    opacity: 1;
+  }
+  //33% {
+  //  bottom: 53px;
+  //  right: 24px;
+  //  transform: rotate(10deg);
+  //  opacity: 0.7;
+  //}
+  //66% {
+  //  bottom: 124px;
+  //  right: 48px;
+  //  transform: rotate(21.24deg);
+  //  opacity: 0.4;
+  //}
+  100% {
+    bottom: 155px;
+    right: 66px;
+    transform: rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes updateCountMove {
+  0% {
+    bottom: 32px;
+    right: 30px;
+    transform: rotate(0);
+    opacity: 0;
+  }
+  8% {
+    bottom: 102px;
+    right: -12px;
+    transform: rotate(15deg);
+    opacity: 1;
+  }
+  100% {
+    bottom: 95px;
+    right: -9px;
+    transform: rotate(15deg);
+    opacity: 0;
+  }
+}
