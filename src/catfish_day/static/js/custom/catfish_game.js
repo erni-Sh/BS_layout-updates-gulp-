@@ -10,7 +10,8 @@ window.addEventListener('DOMContentLoaded', () => {
     notify:         getElByCl('catfishTop__notify'),
 
     header:         getElByCl('catfishTop'),
-    button:         getElByCl('catfishTop__button'),
+    btnRestart:     getElByCl('catfishTop__button_restart'),
+    btnGetPromo:    getElByCl('catfishTop__button_getPromo'),
     codeOnBtn:      getElByCl('catfishTop__button__promocode'),
     promocodes: [
       ['TRULOVE10', '10%'],
@@ -21,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ],
 
     modal:          getElByCl('landingModal'),
-    opener:         getElByCl('catfishTop__button'),
+    // opener:         getElByCl('catfishTop__button'),
     closer:         getElByCl('landingModal__close'),
     modalCount:     getElByCl('landingModal__totalCount').children[0],
     discount:       getElByCl('landingModal__discount'),
@@ -30,44 +31,37 @@ window.addEventListener('DOMContentLoaded', () => {
     modalPrmcAlert: getElByCl('landingModal__promocode__alertCopied'),
 
     countWeight: 1, // init
-    maxWeight: 265,
+    maxWeight: 265, //
     countWidth: 124, // init
     maxWidth: 681,
-
-    setWeight(size) {
-      this.countWeight = size;
-      this.weight.children[0].innerText = size;
-    },
-
-    setWidth(width) {
-      this.countWidth = width;
-      this.catfishBody.style.width = width;
-    },
-
-    getWeightWidth() {
-      return (this.maxWidth - this.countWidth)/this.maxWeight;
-    },
+    clickCounter: 2,
 
     init() {
       this.restartGame();
 
       this.clicker.addEventListener('click', () => {
         this.animateFlashScreen();
-        this.countWeight < this.maxWeight ? this.growUp() : this.swimAway()
+
+        !this.clickCounter
+          ? this.countWeight < this.maxWeight ? this.growUp() : this.swimAway()
+          : this.clickCounter--;
       });
       this.modalPrmcCopy.addEventListener('click', () =>
         this.copyToClipboard(this.modalPromocode.innerHTML));
 
-      this.opener.addEventListener('click', this.openModal);
+      this.btnRestart.addEventListener('click', () => this.restartGame());
+      this.btnGetPromo.addEventListener('click', this.openModal);
       this.closer.addEventListener('click', this.closeModal);
     },
 
     restartGame() {
       this.setWeight(1); // init
       this.setWidth(124); // init
+      this.setRandomClickCount();
       this.checkPromocode();
-      timer = setInterval(() => this.growDown(), 2000);
-      this.button.classList.remove('catfishTop__button_isHidden');
+      timer = setInterval(() => this.growDown(), 400);
+      this.btnRestart.classList.add('catfishTop__button_isHidden');
+      this.btnGetPromo.classList.remove('catfishTop__button_isHidden');
       this.clicker.classList.remove('catfishTop__clicker_isBlocked');
       this.notify.classList.remove('isVisible');
       this.catfishBody.classList.remove('catfishTop__body_isSwimAway');
@@ -76,34 +70,39 @@ window.addEventListener('DOMContentLoaded', () => {
     growUp() {
       this.checkPromocode();
 
-      const randomGrowUpSize = getRandomInt(10, 15);
+      const randomGrowUpSize = getRandomInt(13, 20);
 
       this.animateUpdateWeight(randomGrowUpSize);
 
       this.setWeight(this.countWeight + randomGrowUpSize);
       this.setWidth(this.countWidth + this.getWeightWidth() * randomGrowUpSize);
       this.showReaction();
+      this.setRandomClickCount();
     },
 
     growDown() {
+      const growDownSize = 1;
+      if(this.countWeight <= growDownSize) return;
+
       this.checkPromocode();
 
-      const randomGrowDownSize = getRandomInt(1, 5);
-      if(this.countWeight <= randomGrowDownSize) return;
-
-      this.setWeight(this.countWeight - randomGrowDownSize);
-      this.setWidth(this.countWidth - this.getWeightWidth() * randomGrowDownSize);
+      this.setWeight(this.countWeight - growDownSize);
+      this.setWidth(this.countWidth - this.getWeightWidth() * growDownSize);
     },
 
     showReaction() {
-      const random = getRandomInt(0,3);
+      const random = getRandomInt(0,4);
+      if(!this.reactions.children[random]) return;
       this.reactions.children[random].classList.remove('isVisible');
       setTimeout(() => this.reactions.children[random].classList.add('isVisible'), 1);
     },
 
     checkPromocode() {
-      const indexPromocode = Math.floor(this.countWeight/this.maxWeight * this.promocodes.length);
+      let indexPromocode = Math.floor(this.countWeight/(this.maxWeight + 20) * this.promocodes.length);
       this.codeOnBtn.innerHTML = this.promocodes[indexPromocode][1];
+
+      [...this.reactions.children[0].getElementsByTagName('text')]
+        .map(e => e.innerHTML = `Awesome! ${this.promocodes[indexPromocode][1]}`);
 
       this.discount.innerHTML = `${this.promocodes[indexPromocode][1]} OFF`;
       this.modalPromocode.innerHTML = this.promocodes[indexPromocode][0];
@@ -112,7 +111,8 @@ window.addEventListener('DOMContentLoaded', () => {
     swimAway() {
       clearInterval(timer);
       this.setWeight(0); // init
-      this.button.classList.add('catfishTop__button_isHidden');
+      this.btnGetPromo.classList.add('catfishTop__button_isHidden');
+      this.btnRestart.classList.remove('catfishTop__button_isHidden');
       this.clicker.classList.add('catfishTop__clicker_isBlocked');
       this.notify.classList.add('isVisible');
       this.catfishBody.classList.add('catfishTop__body_isSwimAway');
@@ -129,6 +129,25 @@ window.addEventListener('DOMContentLoaded', () => {
     animateFlashScreen() {
       this.header.classList.add('catfishTop_isFlashing');
       setTimeout(() => this.header.classList.remove('catfishTop_isFlashing'), 50);
+    },
+    // ------   SETTERS ------------
+    setWeight(size) {
+      this.countWeight = size;
+      this.weight.children[0].innerText = size;
+    },
+
+    setWidth(width) {
+      this.countWidth = width;
+      this.catfishBody.style.width = width;
+    },
+
+    getWeightWidth() {
+      return (this.maxWidth - this.countWidth)/this.maxWeight;
+    },
+
+    setRandomClickCount() {
+      this.clickCounter = getRandomInt(1, 1); // for dev
+      // this.clickCounter = getRandomInt(3, 8);
     },
 
     // -------- MODAL --------

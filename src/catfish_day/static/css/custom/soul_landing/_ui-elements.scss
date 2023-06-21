@@ -43,7 +43,6 @@
 
 .BS_button {
   position: relative;
-  background: #FFBA08;
   background: $yellow;
   color: $white;
   font-weight: 900;
@@ -53,14 +52,16 @@
   height: 50px;
   line-height: 50px;
   //width: 272px;
-  padding: 0 40px;
+  padding: 0 12px;
   border: none;
   border-radius: 24px;
   overflow: hidden;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  transition: .08s ease all;
+  //transition: .08s ease all;
+  transition: $transition;
+  cursor: pointer;
 
   &:active {
     transform: scale(.97);
@@ -68,14 +69,23 @@
 
   & > span {
     position: relative;
-
-    //transition: .2s ease all;
   }
 
   @media (hover:hover) {
     &:hover {
       color: $LP_basic_black;
-      cursor: pointer;
+    }
+  }
+}
+
+.BS_button__white {
+  @extend .BS_button;
+  background: $white;
+  color: #06518D;
+  @media (hover:hover) {
+    &:hover {
+      background: #06518D;
+      color: $white;
     }
   }
 }

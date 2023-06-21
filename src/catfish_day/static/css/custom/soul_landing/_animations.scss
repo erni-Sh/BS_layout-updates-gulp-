@@ -1,9 +1,9 @@
 @keyframes BGMove {
   0%{
-    background-position: 50% 44%;
+    background-position-y: 44%;
   }
   100% {
-    background-position: 50% 58%;
+    background-position-y: 58%;
   }
 }
 
@@ -24,33 +24,15 @@
 
 @keyframes reactionMove {
   0% {
-    bottom: 0px;
-    right: 0px;
-    transform: rotate(-4.22deg);
+    transform: rotate(-4.22deg) translate(0, 0);
     opacity: 0;
   }
   1% {
-    bottom: 0px;
-    right: 0px;
-    transform: rotate(-4.22deg);
+    transform: rotate(-4.22deg) translate(0, 0);
     opacity: 1;
   }
-  //33% {
-  //  bottom: 53px;
-  //  right: 24px;
-  //  transform: rotate(10deg);
-  //  opacity: 0.7;
-  //}
-  //66% {
-  //  bottom: 124px;
-  //  right: 48px;
-  //  transform: rotate(21.24deg);
-  //  opacity: 0.4;
-  //}
   100% {
-    bottom: 155px;
-    right: 66px;
-    transform: rotate(25deg);
+    transform: rotate(25deg) translate(0, -155px) ; // 66
     opacity: 0;
   }
 }

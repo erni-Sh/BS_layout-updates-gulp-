@@ -110,6 +110,7 @@
     margin-bottom: 24px;
     cursor: pointer;
     transition: .1s ease all;
+    -webkit-tap-highlight-color: transparent;
 
     &__copy > svg {
       position: absolute;
@@ -143,19 +144,5 @@
   }
   &__link {
     width: 100%;
-  }
-  @media screen and (max-width: 590px) {
-    &__inner {
-      &:before, &:after {
-        top: 48%;
-      }
-    }
-    &__heart {
-      top: 48%;
-    }
-    &__buttons {
-      flex-direction: column;
-      align-items: center;
-    }
   }
 }

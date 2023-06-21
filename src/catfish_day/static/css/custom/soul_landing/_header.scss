@@ -9,12 +9,13 @@
   animation: 6s BGMove alternate-reverse ease-in-out infinite;
 
   &_isFlashing {
-    background-blend-mode: screen; //hard-light;//color-dodge;
+    background-blend-mode: hard-light;//color-dodge;
   }
 
   &__wrapper {
     margin: auto;
-    width: calc(910px + 48px);
+    width: 100%;
+    max-width: calc(910px + 48px);
     padding: 0 24px;
     min-height: 550px;
     position: relative;
@@ -41,11 +42,6 @@
     font-size: 40px;
     max-width: 40vw;
     margin-bottom: 3px;
-    @media screen and (max-width: $mobile) {
-      font-weight: 500;
-      font-size: 4.375vw;
-      line-height: 5.94vw;
-    }
   }
 
   &__descr {
@@ -53,10 +49,6 @@
     font-size: 18px;
     line-height: 133%;
     max-width: 389px;
-    @media screen and (max-width: $mobile) {
-      font-size: 3.75vw;
-      line-height: 5.115vw;
-    }
   }
 
   &__spacer {
@@ -66,18 +58,22 @@
   &__button {
     opacity: 1;
     visibility: visible;
-    transition: $transition;
-    //max-width: 960px;
-    //margin: auto;
+    position: relative;
+
     &_isHidden {
+      position: absolute;
       opacity: 0;
       visibility: hidden;
+    }
+    & > button {
+      width: 100%;
+      max-width: 342px;
     }
   }
 
   &__right {
     position: absolute;
-    right: 25px;
+    right: 24px;
     bottom: 60px;
     text-align: right;
   }
@@ -153,12 +149,14 @@
     font-family: $carterFont;
     font-weight: 400;
     font-size: 30px;
-    line-height: 30px;
+    line-height: 100%;
   }
 
   &__reaction {
     position: absolute;
     opacity: 0;
+    bottom: 0px;
+    right: 0px;
     svg {
       text:first-child {
         stroke: white;
@@ -194,7 +192,8 @@
     &_isSwimAway {
       transition: 2s linear all;
       animation: .3s fishRotate alternate-reverse ease-in-out infinite;
-      left: 150%;
+      //left: 150%;
+      left: 300vw !important;
     }
 
     & > svg {
@@ -209,28 +208,58 @@
   }
 
   @media screen and (max-width: 661px){
+    background-position: 61% 50%;
+    background-size: auto 112%;
+
     &__wrapper {
       min-height: auto;
     }
 
     &__left {
       max-width: 100%;
-      padding: 30px 15px 0;
+      padding-top: 83px;
     }
 
     &__logo {
-      margin-bottom: 22px;
+      display: none;
       & > svg {
         width: 173px;
       }
     }
 
     &__title {
+      font-size: 24px;
+      line-height: 43px;
       max-width: 100%;
     }
 
     &__spacer {
-      height: 292px;
+      height: 354px;
+    }
+
+    &__clicker {
+
+    }
+
+    &__reactions {
+      right: auto;
+      left: 0px;
+      bottom: 4px;
+    }
+
+    &__reaction {
+      left: -25px;
+      right: auto;
+      & > svg {
+        height: 20px;
+      }
+    }
+
+    &__notify {
+      font-size: 18px;
+      max-width: calc(100% - 96px);
+      white-space: normal;
+      text-align: left;
     }
 
     &__button {
@@ -238,6 +267,16 @@
       text-align: center;
       min-height: 119px;
       //padding-bottom: 69px;
+    }
+
+    &__body {
+      left: auto;
+      top: 350px;
+    }
+
+    &__right {
+      width: calc(100% - 48px);
+      bottom: 151px;
     }
 
   }
