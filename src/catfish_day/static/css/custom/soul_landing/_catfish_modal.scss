@@ -1,0 +1,148 @@
+.landingModal {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #032d52e8; //rgba(44,5,63, 0.9);
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  transition: .2s ease-out all;
+  visibility: hidden;
+  //transform: scale(0);
+  opacity: 0;
+
+  &_isVisible {
+    visibility: visible;
+    opacity: 1;
+
+    .landingModal__inner {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  &__inner {
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 95%;
+    max-width: 320px;
+    min-height: 597px;
+    height: 597px;
+    background: radial-gradient(84.38% 35.19% at 53.91% 39.5%, #81D0FF 0%, rgba(34, 147, 214, 0.91) 31.05%, rgba(16, 112, 173, 0.58) 52.52%, rgba(4, 76, 136, 0.37) 73.63%, rgba(0, 55, 99, 0) 87.13%, rgba(0, 41, 80, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, linear-gradient(180deg, rgba(0, 24, 47, 0.9) 0%, #00182F 100%);
+    border-radius: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0) ;
+    overflow: hidden;
+    box-shadow: 0px 4px 68px #032d52;
+    padding: 66px 24px 34px;
+    transition: .4s ease-out all;
+    user-select: none;
+  }
+
+  &__close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+    transition: $transition;
+    @media(hover:hover) {
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 100%;
+    margin-bottom: 198px;
+  }
+
+  &__catfish {
+    position: absolute;
+    top: 233px;
+    left: calc(50% - 21px);
+    transform: translate(-50%, -50%);
+    animation: 7s fishRotate alternate-reverse ease-in-out infinite;
+    & > svg {
+      width: 257px;
+      animation: 5s fishSwimming alternate-reverse ease-in-out infinite;
+      & > g {
+        animation: 5s fishShadow alternate-reverse ease-in-out infinite;
+        transform-origin: center;
+      }
+    }
+  }
+
+  &__totalCount {
+    position: relative;
+    font-family: $carterFont;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 100%;
+    text-align: center;
+    margin-bottom: -14px;
+    & > span:nth-child(2) {
+      font-size: 30px;
+    }
+  }
+
+  &__discount {
+    font-weight: 800;
+    font-size: 32px;
+    margin-bottom: 19px;
+  }
+
+  &__promocode {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 58px;
+    text-align: center;
+    color: #FFFFFF;
+    border: 2px dashed #FFFFFF;
+    border-radius: 15px;
+    padding: 0 40px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: .1s ease all;
+    -webkit-tap-highlight-color: transparent;
+
+    &__copy > svg {
+      position: absolute;
+      right: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &__alertCopied {
+      position: absolute;
+      top: -3px;
+      bottom: -3px;
+      left: -3px;
+      right: -3px;
+      border-radius: 15px;
+      background: white;
+      text-align: center;
+      color: #3E0242;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 64px;
+      transition: 2s ease-in opacity;
+      opacity: 0;
+
+      &_visible {
+        transition: .1s ease-in opacity;
+        opacity: 1;
+        z-index: 10;
+      }
+    }
+  }
+  &__link {
+    width: 100%;
+  }
+}

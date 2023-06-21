@@ -1,0 +1,89 @@
+.landingTop {
+  &__front {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 183.75vw;
+    height: 238.85vw;
+    /*max-width: 843px;*/
+    max-height: 1231px;
+    bottom: 134px;
+    right: 56%;
+    transform: translate(50%, 50%);
+  }
+
+  &__circles, &__tiles, &__tiles_additional {
+    & > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__circles, &__tiles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__circles {
+    animation: fromCenter 2s cubic-bezier(.14,.58,.12,1.13) forwards;
+  }
+
+  &__tiles {
+    animation: fromBottom 2s cubic-bezier(.14,.58,.12,1.13) forwards;
+  }
+
+  &__tiles_additional {
+    display: none;
+    position: absolute;
+    bottom: -20px;
+    left: -192px;
+    animation: fromBottomTwo 2s cubic-bezier(.14,.58,.12,1.13) forwards;
+  }
+
+  @media screen and (min-width: 768px) {
+    &__front {
+      width: 58.75vw;
+      height: 76.38vw;
+      bottom: 127px;
+      max-width: 1000px;
+      min-width: 780px;
+      right: 31.5%;
+    }
+    &__tiles_additional {
+      display: block;
+    }
+  }
+}
+
+@keyframes fromCenter {
+  0% {
+    transform: scale(0);
+  }
+  35% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fromBottom {
+  0%, 25% {
+    transform: translateY(100vw);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fromBottomTwo {
+  0%, 40% {
+    transform: translateY(100vw);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

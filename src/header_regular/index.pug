@@ -1,0 +1,44 @@
+extends ../layout/_tmpl
+
+block styles
+	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/index.css')
+	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/instapage.css')
+	link(rel='stylesheet', href='/header_regular/static/css/custom/soul_landing/landing_header.css')
+	link(rel='stylesheet', href='/header_regular/static/css/BS_common.css')
+
+block scripts
+	//script(src='/app-collections_landing/static/js/vendor/swiper.min.js')
+	//script(src='/app-collections_landing/static/js/custom/app-collections_landing.js')
+
+block main
+	section.section.section-relative#landing-header
+		.section-holder-border.item-block.item-absolute
+		.section-holder-overlay.item-block.item-absolute
+		.section-block
+			.section-inner.section-fit.section-relative
+				.landingTop__front
+					.landingTop__circles
+						include ./includes/_svg/headerRegular_circles.svg
+					.landingTop__tiles
+						include ./includes/_svg/headerRegular_tiles.svg
+				.landingTop__tiles_additional
+					include ./includes/_svg/headerRegular_tiles_additional.svg
+				#element-123.widget.item-absolute
+					.contents.cropped.item-block
+						img.item-content-box.item-block(alt='' src='https://s3.amazonaws.com/cdn.builds.io/newstatic/assets/soul_landing/logo.png')
+				#element-122.widget.item-absolute
+					.contents.cropped.item-block
+						img.item-content-box.item-block(alt='' src='https://s3.amazonaws.com/cdn.builds.io/newstatic/assets/soul_landing/buildstore-title.svg')
+				#element-2.widget.item-absolute.headline
+					.contents
+						h1
+							p.x_e0654353
+								span.x_f2074b6c Safe and trustworthy alternative app store for iOS
+				#element-127.widget.item-absolute.headline
+					.contents
+						h1
+							p.x_9a9d3d17
+								span.x_736e2a90
+									| Over 500 apps available – sideload your favorite Games, Emulators, Tweaks, and more!
+				#element-4.widget.item-absolute.landing__signup-btn
+					a.url-link.btn.item-block(href='/accounts/register/' onclick="fbq('track', 'user_tap_sign_up_button')") GET ACCESS NOW

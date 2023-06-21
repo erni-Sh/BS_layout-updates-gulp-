@@ -1,0 +1,283 @@
+.catfishTop {
+  position: relative;
+  color: $white;
+  background-color: #187fbb;
+  background-image: url('/catfish_day/static/assets/soul_landing/catfish_BG.jpeg');
+  background-position: 50% 50%;
+  background-size: auto 127%;
+  overflow: hidden;
+  animation: 6s BGMove alternate-reverse ease-in-out infinite;
+
+  &_isFlashing {
+    background-blend-mode: hard-light;//color-dodge;
+  }
+
+  &__wrapper {
+    margin: auto;
+    width: 100%;
+    max-width: calc(910px + 48px);
+    padding: 0 24px;
+    min-height: 550px;
+    position: relative;
+  }
+
+  &__left {
+    position: relative;
+    padding: 96px 0 0;
+    max-width: 47%;
+  }
+
+  &__logo {
+    display: block;
+    margin-bottom: 168px;
+    & > svg {
+      width: 150px;
+      height: auto;
+    }
+  }
+  &__title {
+    font-weight: 800;
+    line-height: 55px;
+    letter-spacing: 0.4px;
+    font-size: 40px;
+    max-width: 40vw;
+    margin-bottom: 3px;
+  }
+
+  &__descr {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 133%;
+    max-width: 389px;
+  }
+
+  &__spacer {
+    height: 27px;
+  }
+
+  &__button {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+
+    &_isHidden {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+    & > button {
+      width: 100%;
+      max-width: 342px;
+    }
+  }
+
+  &__right {
+    position: absolute;
+    right: 24px;
+    bottom: 60px;
+    text-align: right;
+  }
+
+  &__weight {
+    position: relative;
+    font-family: $carterFont;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 130%;
+    text-align: right;
+    & > span:nth-child(2) {
+      font-size: 30px;
+    }
+  }
+
+  &__updateWeight {
+    position: absolute;
+    font-family: $carterFont;
+    font-weight: 400;
+    font-size: 58.4266px;
+    line-height: 58px;
+    bottom: 32px;
+    right: 30px;
+    animation: 3s updateCountMove linear forwards;
+  }
+
+  &__clicker {
+    position: relative;
+    display: inline-block;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px dashed #FFFFFF;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    pointer-events: visible;
+    transition: .1s ease all;
+
+    &:active {
+      transform: scale(0.98);
+      background: #c1b7ff80;
+    }
+
+    & > svg {
+      position: absolute;
+      left: 50%;
+      top: 21px;
+      transform: translateX(-50%);
+    }
+    & > span {
+      left: 50%;
+      position: absolute;
+      bottom: 14px;
+      transform: translateX(-50%);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    &_isBlocked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  &__reactions {
+    position: absolute;
+    bottom: 9px;
+    right: 184px;
+    white-space: nowrap;
+    font-family: $carterFont;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 100%;
+  }
+
+  &__reaction {
+    position: absolute;
+    opacity: 0;
+    bottom: 0px;
+    right: 0px;
+    svg {
+      text:first-child {
+        stroke: white;
+        stroke-width: 8.5px;
+        stroke-linejoin: round;
+      }
+    }
+
+    &.isVisible {
+      animation: 2s reactionMove linear forwards;
+    }
+  }
+
+  &__notify {
+    @extend .catfishTop__reactions;
+    right: 122px;
+    transition: $transition;
+    transform: scale(1, 0);
+    &.isVisible {
+      transform: scale(1);
+    }
+  }
+
+  &__body {
+    position: absolute;
+    left: 55.5%;
+    top: 47%;
+    transform: translate(-50%, -50%);
+    width: 124px; //584px;
+    transition: $transition;
+    animation: 7s fishRotate alternate-reverse ease-in-out infinite;
+
+    &_isSwimAway {
+      transition: 2s linear all;
+      animation: .3s fishRotate alternate-reverse ease-in-out infinite;
+      //left: 150%;
+      left: 300vw !important;
+    }
+
+    & > svg {
+      width: 100%;
+      height: 100%;
+      animation: 5s fishSwimming alternate-reverse ease-in-out infinite;
+      & > g {
+        animation: 5s fishShadow alternate-reverse ease-in-out infinite;
+        transform-origin: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 661px){
+    background-position: 61% 50%;
+    background-size: auto 112%;
+
+    &__wrapper {
+      min-height: auto;
+    }
+
+    &__left {
+      max-width: 100%;
+      padding-top: 83px;
+    }
+
+    &__logo {
+      display: none;
+      & > svg {
+        width: 173px;
+      }
+    }
+
+    &__title {
+      font-size: 24px;
+      line-height: 43px;
+      max-width: 100%;
+    }
+
+    &__spacer {
+      height: 354px;
+    }
+
+    &__clicker {
+
+    }
+
+    &__reactions {
+      right: auto;
+      left: 0px;
+      bottom: 4px;
+    }
+
+    &__reaction {
+      left: -25px;
+      right: auto;
+      & > svg {
+        height: 20px;
+      }
+    }
+
+    &__notify {
+      font-size: 18px;
+      max-width: calc(100% - 96px);
+      white-space: normal;
+      text-align: left;
+    }
+
+    &__button {
+      display: block;
+      text-align: center;
+      min-height: 119px;
+      //padding-bottom: 69px;
+    }
+
+    &__body {
+      left: auto;
+      top: 350px;
+    }
+
+    &__right {
+      width: calc(100% - 48px);
+      bottom: 151px;
+    }
+
+  }
+}
