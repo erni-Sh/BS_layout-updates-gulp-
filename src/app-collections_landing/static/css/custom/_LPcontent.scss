@@ -23,7 +23,6 @@
 .ColLP__top {
   position: relative;
   color: $white;
-  //background: $WA_BG;
   overflow: hidden;
 
   &__wrapper {
@@ -224,37 +223,30 @@
     flex-direction: row;
     padding: 54px;
   }
+
   &__left {
-    width: 277px;
-    min-width: 277px;
+    width: 297px;
+    min-width: 297px;
   }
   &__right {
     color: $LP_basic_black;
     padding-top: 7px;
     & > * {
-      //transition: $transition;
       transition: .4s cubic-bezier(0.550, 0.085, 0.680, 0.530);
       opacity: 0;
       filter: blur(12px);
-      //transform: translateY(30px);
     }
     &.js_isVisible > * {
       opacity: 1;
       filter: blur(0);
-      //transform: translateY(0);
     }
   }
   &__title {
     @extend .LP__title;
-    //font-weight: 400;
-    //font-size: 26px;
     margin-bottom: 15px;
   }
   &__descr {
     @extend .LP__descr;
-    //font-weight: 400;
-    //font-size: 16px;
-    //line-height: 150%;
     p + p {
       margin-top: 9px;
     }
@@ -263,12 +255,34 @@
     position: absolute;
     left: 0;
     top: 0;
+    width: 330px;
+    height: 100%;
   }
   &__background {
     position: absolute;
     left: 0;
     top: 0;
   }
+
+  &__trumb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &_isVisible.js_isVisible > img { // when img loaded and isIntersection
+      transform: scale(1);
+    }
+
+    & > img {
+      position: relative;
+      transform: scale(0);
+      transition: $transition;
+      width: 272px;
+      height: 214px;
+    }
+  }
+
   &__arrow {
     position: absolute;
     top: 39px;
@@ -318,6 +332,11 @@
       height: 242px;
     }
 
+    &__picWrapper {
+      width: 100%;
+      height: 273px;
+    }
+
     &__rocket {
       top: 61px;
       left: calc(50vw - 7px);
@@ -338,15 +357,12 @@
       left: 50vw;
       transform: translateX(-50%);
     }
-    //&__picWrapper {
-    //  left: -20px;
-    //  top: -19px;
-    //}
   }
 }
 
 .ColLP__promocode {
   min-height: 550px;
+  position: relative;
   color: $white;
   margin-bottom: 56px;
   overflow: hidden;
@@ -497,6 +513,13 @@
     span:nth-child(2) {
       color: #6C19BF;
     }
+
+    &.variant_2 {
+      background: #2F0096;
+      span:nth-child(2) {
+        color: $yellow;
+      }
+    }
   }
 
   &__wrapper.js_isVisible &__desk {
@@ -614,39 +637,6 @@
   
 }
 
-//.ColLP__seo {
-//  &__wrapper {
-//    background: white;
-//    color: $LP_basic_black;
-//    padding: 64px 0;
-//    opacity: 0;
-//    filter: blur(12px);
-//    transition: .4s cubic-bezier(0.550, 0.085, 0.680, 0.530);
-//
-//    &.js_isVisible {
-//      opacity: 1;
-//      filter: blur(0);
-//    }
-//  }
-//
-//  &__title {
-//    @extend .LP__title;
-//    margin-bottom: 13px;
-//  }
-//
-//  &__descr {
-//    @extend .LP__descr;
-//    p + p {
-//      margin-top: 45px;
-//    }
-//  }
-//  @media screen and (max-width: 961px) {
-//    &__wrapper {
-//      padding: 64px 15px;
-//    }
-//  }
-//}
-
 .ColLP__comments {
   padding: 66px 0;
   background: $WA_comment_BG;
@@ -661,13 +651,8 @@
 
   &__cards {
     width: 100%;
-    //height: 139px;
     height: fit-content;
     margin-bottom: 61px;
-    //display: grid;
-    //grid-template-columns: repeat(auto-fill,minmax(305px,1fr));
-    //justify-items: center;
-    //gap: 16px 22px;
 
     &__pagination {
       text-align: center;
@@ -699,127 +684,3 @@
     }
   }
 }
-
-//.ColLP__footer {
-//  min-height: 82px;
-//  //background: $WA_BG;
-//}
-
-//.xmasModal {
-//  &__wrapper {
-//    position: absolute;
-//    background: rgb(64 2 67 / 90%);
-//    left: 0;
-//    top: 0;
-//    width: 100vw;
-//    height: 100vh;
-//    z-index: 100;
-//    backdrop-filter: blur(2px);
-//    opacity: 0;
-//    visibility: hidden;
-//    transition: .2s ease all;
-//
-//    &_visible {
-//      opacity: 1;
-//      visibility: visible;
-//      & > .xmasModal__inner {
-//        transform: translate(-50%, -50%) scale(1);
-//      }
-//    }
-//  }
-//  &__inner {
-//    //width: 597px;
-//    height: 339px;
-//    position: absolute;
-//    left: 50%;
-//    top: 50%;
-//    transform: translate(-50%, -50%) scale(0);
-//    transition: .3s ease all;
-//  }
-//  &__background {
-//    position: absolute;
-//    left: calc(50% - 6px);
-//    top: calc(50% - 58px);
-//    transform: translate(-50%, -50%);
-//  }
-//  &__title {
-//    position: relative;
-//    font-weight: 900;
-//    font-size: 46px;
-//    line-height: 63px;
-//    text-align: center;
-//    text-transform: capitalize;
-//
-//    background: linear-gradient(91.78deg, #FFFCDE 9.67%, #FFBA07 100.01%), linear-gradient(91.78deg, #EFDDFF 9.67%, #BA85E9 100.01%);
-//    -webkit-background-clip: text;
-//    -webkit-text-fill-color: transparent;
-//    background-clip: text;
-//    text-fill-color: transparent;
-//    margin-bottom: 16px;
-//  }
-//  &__promocode {
-//    position: relative;
-//    width: 263px;
-//    height: 62px;
-//    border: 2px dashed #FFFFFF;
-//    text-align: center;
-//    border-radius: 12px;
-//    margin-bottom: 25px;
-//    cursor: pointer;
-//
-//    & > span {
-//      font-weight: 500;
-//      font-size: 24px;
-//      line-height: 62px;
-//      text-transform: capitalize;
-//      color: white;
-//      transition: .2s ease all;
-//      &:hover {
-//        color: #FFBA07;
-//      }
-//    }
-//
-//    &__icon {
-//      position: absolute;
-//      right: 15px;
-//      top: calc(50% + 2px);
-//      transform: translateY(-50%);
-//      cursor: pointer;
-//      &:hover {
-//        & > svg path{
-//          stroke: #FFBA07;
-//        }
-//      }
-//    }
-//
-//    &__copied {
-//      position: absolute;
-//      top: -2px;
-//      bottom: -2px;
-//      left: -2px;
-//      right: -2px;
-//      border-radius: 12px;
-//      background: white;
-//      text-align: center;
-//      color: #3E0242;
-//      font-size: 24px;
-//      font-weight: 500;
-//      line-height: 62px;
-//      transition: 2s ease-in opacity;
-//      opacity: 0;
-//
-//      &_visible {
-//        transition: .1s ease-in opacity;
-//        opacity: 1;
-//        z-index: 10;
-//      }
-//    }
-//
-//  }
-//  &__button {
-//
-//  }
-//  @media screen and (max-width: $mobile) {
-//
-//  }
-//}

@@ -12,14 +12,16 @@ window.addEventListener('DOMContentLoaded', () => {
     header:         getElByCl('catfishTop'),
     btnRestart:     getElByCl('catfishTop__button_restart'),
     btnGetPromo:    getElByCl('catfishTop__button_getPromo'),
-    codeOnBtn:      getElByCl('catfishTop__button__promocode'),
+    disOnBtn:       getElByCl('catfishTop__button__promocode'),
     promocodes: [
-      ['TRULOVE10', '10%'],
-      ['LBXOXO14', '20%'],
-      ['LBXOXO14', '30%'],
-      ['LBXOXO1SS', '40%'],
-      ['TRULOVE50', '50%'],
+      ['', ''],
+      ['FISH10', '10%'],
+      ['CAT20F', '20%'],
+      ['BS30CF', '30%'],
+      ['WOW40', '40%'],
+      ['CAT50F', '50%'],
     ],
+    indexPromode: 0,
 
     modal:          getElByCl('landingModal'),
     // opener:         getElByCl('catfishTop__button'),
@@ -29,25 +31,29 @@ window.addEventListener('DOMContentLoaded', () => {
     modalPromocode: getElByCl('landingModal__promocode__text'),
     modalPrmcCopy:  getElByCl('landingModal__promocode'),
     modalPrmcAlert: getElByCl('landingModal__promocode__alertCopied'),
+    modalBtn:       getElByCl('landingModal__link'),
 
     countWeight: 1, // init
     maxWeight: 265, //
     countWidth: 124, // init
     maxWidth: 681,
-    clickCounter: 2,
 
     init() {
       this.restartGame();
 
       this.clicker.addEventListener('click', () => {
         this.animateFlashScreen();
-
-        !this.clickCounter
-          ? this.countWeight < this.maxWeight ? this.growUp() : this.swimAway()
-          : this.clickCounter--;
+        this.countWeight < this.maxWeight ? this.growUp() : this.swimAway();
       });
+
       this.modalPrmcCopy.addEventListener('click', () =>
-        this.copyToClipboard(this.modalPromocode.innerHTML));
+        this.copyToClipboard());
+      this.modalBtn.addEventListener('click', () => {
+        this.copyToClipboard();
+        setTimeout(() => {
+          window.location.href = '/accounts/register/';
+        }, 1000)
+      });
 
       this.btnRestart.addEventListener('click', () => this.restartGame());
       this.btnGetPromo.addEventListener('click', this.openModal);
@@ -57,8 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
     restartGame() {
       this.setWeight(1); // init
       this.setWidth(124); // init
-      this.setRandomClickCount();
-      this.checkPromocode();
+      this.indexPromode = 0,
+        this.checkPromocode();
       timer = setInterval(() => this.growDown(), 400);
       this.btnRestart.classList.add('catfishTop__button_isHidden');
       this.btnGetPromo.classList.remove('catfishTop__button_isHidden');
@@ -70,14 +76,13 @@ window.addEventListener('DOMContentLoaded', () => {
     growUp() {
       this.checkPromocode();
 
-      const randomGrowUpSize = getRandomInt(13, 20);
+      const randomGrowUpSize = getRandomInt(2, 5);
 
       this.animateUpdateWeight(randomGrowUpSize);
 
       this.setWeight(this.countWeight + randomGrowUpSize);
       this.setWidth(this.countWidth + this.getWeightWidth() * randomGrowUpSize);
       this.showReaction();
-      this.setRandomClickCount();
     },
 
     growDown() {
@@ -91,21 +96,29 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     showReaction() {
-      const random = getRandomInt(0,4);
+      if(!this.indexPromode) return;
+      const random = getRandomInt(0,10);
       if(!this.reactions.children[random]) return;
       this.reactions.children[random].classList.remove('isVisible');
       setTimeout(() => this.reactions.children[random].classList.add('isVisible'), 1);
     },
 
     checkPromocode() {
-      let indexPromocode = Math.floor(this.countWeight/(this.maxWeight + 20) * this.promocodes.length);
-      this.codeOnBtn.innerHTML = this.promocodes[indexPromocode][1];
+      this.indexPromode = Math.floor(this.countWeight/(this.maxWeight + 20) * this.promocodes.length);
+
+      const [promocode, discount] =
+        [this.promocodes[this.indexPromode][0], this.promocodes[this.indexPromode][1]];
+
+      this.indexPromode
+        ? this.btnGetPromo.children[0].classList.remove('BS_button_isDisabled')
+        : this.btnGetPromo.children[0].classList.add('BS_button_isDisabled');
+      this.disOnBtn.innerHTML = ` ${discount} `;
 
       [...this.reactions.children[0].getElementsByTagName('text')]
-        .map(e => e.innerHTML = `Awesome! ${this.promocodes[indexPromocode][1]}`);
+        .map(e => e.innerHTML = `Awesome! ${discount}`);
 
-      this.discount.innerHTML = `${this.promocodes[indexPromocode][1]} OFF`;
-      this.modalPromocode.innerHTML = this.promocodes[indexPromocode][0];
+      this.discount.innerHTML = `${discount} OFF`;
+      this.modalPromocode.innerHTML = promocode;
     },
 
     swimAway() {
@@ -138,20 +151,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setWidth(width) {
       this.countWidth = width;
-      this.catfishBody.style.width = width;
+      this.catfishBody.style.width = `${width}px`;
     },
 
     getWeightWidth() {
       return (this.maxWidth - this.countWidth)/this.maxWeight;
     },
 
-    setRandomClickCount() {
-      this.clickCounter = getRandomInt(1, 1); // for dev
-      // this.clickCounter = getRandomInt(3, 8);
-    },
+    // setRandomClickCount() {
+    //   // this.clickCounter = getRandomInt(1, 1); // for dev
+    //   this.clickCounter = getRandomInt(3, 8);
+    // },
 
     // -------- MODAL --------
     openModal() {
+      if(!gameCatfish.indexPromode) return;
       clearInterval(timer);
       gameCatfish.modalCount.innerHTML = gameCatfish.countWeight;
       gameCatfish.modal.classList.add('landingModal_isVisible');
@@ -165,8 +179,8 @@ window.addEventListener('DOMContentLoaded', () => {
       body.style.overflow = '';
     },
 
-    copyToClipboard(text) {
-      navigator.clipboard.writeText(text);
+    copyToClipboard() {
+      navigator.clipboard.writeText(this.modalPromocode.innerHTML);
       this.modalPrmcAlert.classList.add('landingModal__promocode__alertCopied_visible');
       setTimeout(() => this.modalPrmcAlert.classList.remove('landingModal__promocode__alertCopied_visible'), 1000);
     },

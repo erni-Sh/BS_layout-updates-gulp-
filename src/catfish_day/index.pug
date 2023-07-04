@@ -1,6 +1,11 @@
 extends ../layout/_tmpl
 
 block styles
+	link(rel="preconnect" href="https://fonts.googleapis.com")
+	link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+	link(href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet")
+
+
 	link(rel='stylesheet', href='/catfish_day/static/css/custom/soul_landing/index.css')
 	link(rel='stylesheet', href='/catfish_day/static/css/custom/soul_landing/instapage.css')
 	link(rel='stylesheet', href='/catfish_day/static/css/custom/soul_landing/catfish_header.css')
@@ -10,24 +15,24 @@ block scripts
 	script(src='/catfish_day/static/js/custom/catfish_game.js')
 
 block main
-	section.catfishTop
+	section.catfishTop(style='background-image: url("/catfish_day/static/assets/soul_landing/catfish_BG.jpeg")')
 		.catfishTop__wrapper
 			.catfishTop__body
 				include ./includes/_svg/catfish_body.svg
-				//	onload=`this.parentElement.classList.add('ColLP__top__app-icon_isVisible')`
+				//-	onload=`this.parentElement.classList.add('ColLP__top__app-icon_isVisible')`
 
 			.catfishTop__left
-				a(href='/' data-event-name='user_tap_logo').catfishTop__logo.js-gaEvent
+				a(href='/').catfishTop__logo
 					include includes/_svg/buildstore-logo_full.svg
 				.catfishTop__title Grow the Catfish
 				.catfishTop__descr
-					| To&nbsp;make the Catfish grow, you need to&nbsp;feed&nbsp;it. The bigger the Catfish, the bigger the BuildStore subscription discount you can get!
+					| To&nbsp;make the Catfish grow, you need to&nbsp;feed&nbsp;it. The&nbsp;bigger the Catfish, the bigger the BuildStore subscription discount you can get!
 				.catfishTop__spacer
 				.catfishTop__button.catfishTop__button_getPromo
-					button.BS_button
-						span Catch the Catfish with&nbsp;
-							span.catfishTop__button__promocode 10%
-							| &nbsp;off
+					button.BS_button.BS_button_isDisabled
+						span Get
+							span.catfishTop__button__promocode
+							| promo code
 				.catfishTop__button.catfishTop__button_isHidden.catfishTop__button_restart
 					button.BS_button__white
 						span TRY AGAIN
@@ -70,7 +75,7 @@ block main
 			.landingModal__totalCount
 				span 1
 				span lb
-			.landingModal__discount 20% OFF
+			.landingModal__discount
 
 			.landingModal__promocode
 				.landingModal__promocode__text
@@ -79,6 +84,6 @@ block main
 					include includes/_svg/copy_icon.svg
 				.landingModal__promocode__alertCopied
 					| Copied!
-			.landingModal__link.BS_button
-				a(href='/accounts/register/') USE PROMOCODE
+			button.landingModal__link.BS_button
+				span USE PROMOCODE
 

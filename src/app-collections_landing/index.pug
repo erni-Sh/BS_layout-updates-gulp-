@@ -18,7 +18,10 @@ block main
 	// - var PROMOCODE = 'KIDS';
 	// - var discount = '5%'
 
-	- var BG = 'linear-gradient(98.33deg, #6750BD 0%, #42F5B5 70.79%, #61F47B 100%)';
+	// - var BG = 'linear-gradient(98.33deg, #6750BD 0%, #42F5B5 70.79%, #61F47B 100%)';
+	- var BG = '#5c28d5';
+	- var imageBG = 'https://erni-sh.github.io/staticBS/assets/landings/app_collections/pokemon_BG.jpeg';
+	- var isCirclesOnBg = false;
 	- var title = 'Special offers for WhatsApp Tweaks!';
 	- var descr = 'Make your choise and use this incredible features!';
 	- var mainIcon = '/app-collections_landing/static/assets/app-collections_landing/wa_main_pic.svg';
@@ -28,11 +31,15 @@ block main
 
 	.main_wrapper
 		section.ColLP__top(style=`background:${BG}`)
+			if imageBG
+				img(src= imageBG
+					onload=`this.classList.add('ColLP__imageBG_isVisible')` alt="background").ColLP__imageBG
 			.ColLP__top__wrapper.container
 				.ColLP__top__pictures
 					.ColLP__top__pictures__wrapper
-						.ColLP__top__circles
-							include includes/_svg/circles.svg
+						if isCirclesOnBg
+							.ColLP__top__circles
+								include includes/_svg/circles.svg
 						.ColLP__top__app-icon
 							img(
 								src= mainIcon
@@ -66,10 +73,14 @@ block main
 			.container
 				.ColLP__sideloading__wrapper
 					.ColLP__sideloading__picWrapper
-						.ColLP__sideloading__background
-							include includes/_svg/sideloading_BG.svg
-						.ColLP__sideloading__rocket.js-observer
-							include includes/_svg/rocket.svg
+						.ColLP__sideloading__trumb.js-observer
+							img(
+								src='https://erni-sh.github.io/staticBS/assets/landings/app_collections/pokemon_icon.png' alt=''
+								onload="this.parentElement.classList.add('ColLP__sideloading__trumb_isVisible')")
+						//.ColLP__sideloading__background
+						//	include includes/_svg/sideloading_BG.svg
+						//.ColLP__sideloading__rocket.js-observer
+						//	include includes/_svg/rocket.svg
 					.ColLP__sideloading__inner
 						.ColLP__sideloading__left
 						.ColLP__sideloading__right.js-observer
@@ -79,16 +90,20 @@ block main
 								p We’ve reviewed hundreds of tweaked applications and selected the best few. The tweaked WhatsApp and Watusi apps use new and improved features like call recorder, pin, and archive chat capabilities, easy voice recording features, and custom chat design.
 
 		section.ColLP__promocode(style=`background:${BG}`)
+			if imageBG
+				img(src= imageBG
+					onload=`this.classList.add('ColLP__imageBG_isVisible')` alt="background").ColLP__imageBG
 			.ColLP__promocode__alert
 				| Promocode copied!
 			.ColLP__promocode__wrapper.container.js-observer
 				.ColLP__promocode__pictures
 					.ColLP__promocode__pictures__wrapper
-						.ColLP__promocode__circles
-							include includes/_svg/circles.svg
+						if isCirclesOnBg
+							.ColLP__promocode__circles
+								include includes/_svg/circles.svg
 						.ColLP__promocode__big-tiles
 							include includes/_svg/left-tiles.svg
-						.ColLP__promocode__desk
+						.ColLP__promocode__desk.variant_2
 							span PROMOCODE:&nbsp;
 							span= PROMOCODE
 						.ColLP__promocode__offer

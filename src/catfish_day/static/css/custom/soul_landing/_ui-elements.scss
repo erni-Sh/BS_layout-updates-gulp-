@@ -59,7 +59,8 @@
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  //transition: .08s ease all;
+  pointer-events: visible;
+  user-select: none;
   transition: $transition;
   cursor: pointer;
 
@@ -74,6 +75,17 @@
   @media (hover:hover) {
     &:hover {
       color: $LP_basic_black;
+    }
+  }
+
+  &_isDisabled {
+    cursor: not-allowed;
+    color: white;
+    background-color: #b8b8b8;
+    @media (hover:hover) {
+      &:hover {
+        color: white;
+      }
     }
   }
 }

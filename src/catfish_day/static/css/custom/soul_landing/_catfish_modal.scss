@@ -65,10 +65,10 @@
     top: 233px;
     left: calc(50% - 21px);
     transform: translate(-50%, -50%);
-    animation: 7s fishRotate alternate-reverse ease-in-out infinite;
     & > svg {
       width: 257px;
-      animation: 5s fishSwimming alternate-reverse ease-in-out infinite;
+      animation: 7s fishRotate alternate-reverse ease-in-out infinite,
+      5s fishSwimming alternate-reverse ease-in-out infinite;
       & > g {
         animation: 5s fishShadow alternate-reverse ease-in-out infinite;
         transform-origin: center;

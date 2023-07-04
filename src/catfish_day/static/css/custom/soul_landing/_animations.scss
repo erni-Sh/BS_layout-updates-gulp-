@@ -8,18 +8,20 @@
 }
 
 @keyframes fishRotate {
-  0%    {transform: translate(-50%, -50%) rotate(3deg);}
-  100%  {transform: translate(-50%, -50%) rotate(-3deg);}
+  0%    {transform: rotate(3deg);}
+  100%  {transform: rotate(-3deg);}
 }
 
 @keyframes fishSwimming {
-  0%    {transform: scale(1);}
-  100%  {transform: scale(1.05);}
+  //0%    {transform: scale(1);}
+  //100%  {transform: scale(1.05);}
+  0%    {width: 100%;}
+  100%  {width: 105%;}
 }
 
 @keyframes fishShadow {
-  0%    {transform: scale(1);}
-  100%  {transform: scale(0.90);}
+  0%    {transform: scale(1) translateX(0px);}
+  100%  {transform: scale(0.82) translateX(-5%);}
 }
 
 @keyframes reactionMove {
