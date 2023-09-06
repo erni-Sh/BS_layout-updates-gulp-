@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+html {
+  min-width: 320px;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  background: rgb(255, 255, 255);
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  position: absolute;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+body::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a,
+a:-webkit-any-link,
+a:visited {
+  /*color: inherit;*/
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+input, select, textarea, p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+main {
+  overflow: hidden;
+}
+
+u > span {
+  text-decoration: inherit;
+}
+
+ol, ul {
+  padding-left: 2.5rem;
+  margin: .625rem 0;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+iframe {
+  border: 0;
+}
+
+.item-absolute {
+  position: absolute;
+}
+
+.item-block {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.item-cover {
+  z-index: 1000001;
+}
+
+.item-breakword {
+  word-wrap: break-word;
+}
+
+.item-content-box {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.clearfix {
+  clear: both;
+}
+
+

@@ -6,16 +6,18 @@
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    max-width: 1138px;
+    width: 100%;
 }
 
-@media (min-width: 768px) {
-    .container {
-        width: 750px;
-    }
-}
+/*@media (min-width: 768px) {*/
+/*    .container {*/
+/*        width: 750px;*/
+/*    }*/
+/*}*/
 
-@media (min-width: 992px) {
-    .container {
-        width: 1138px; // 970px;
-    }
-}
+/*@media (min-width: 992px) {*/
+/*    .container {*/
+/*        width: 1138px;*/
+/*    }*/
+/*}*/
