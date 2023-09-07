@@ -1,0 +1,72 @@
+.affTop {
+  position: relative;
+  color: $white;
+  overflow: hidden;
+  background: #231359;
+
+  &__wrapper {
+    min-height: 520px;
+    position: relative;
+  }
+
+  &__left {
+    position: relative;
+    padding: 175px 0 0;
+    max-width: 47%;
+  }
+  &__logo {
+    display: block;
+    margin-bottom: 35px;
+    & > svg {
+      width: 195px;
+      height: auto;
+    }
+  }
+  &__title {
+    @extend .top_title;
+    color: $yellow;
+    margin-bottom: 8px;
+  }
+
+  &__descr {
+    @extend .h2;
+  }
+
+  &__spacer {
+    height: 32px;
+  }
+
+  &__button {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 661px){
+    &__wrapper {
+      min-height: auto;
+    }
+
+    &__left {
+      max-width: 100%;
+      padding: 30px 15px 0;
+    }
+
+    &__logo {
+      margin-bottom: 22px;
+      & > svg {
+        width: 173px;
+      }
+    }
+
+    &__spacer {
+      height: 292px;
+    }
+
+    &__button {
+      display: block;
+      text-align: center;
+      min-height: 119px;
+      //padding-bottom: 69px;
+    }
+  }
+}

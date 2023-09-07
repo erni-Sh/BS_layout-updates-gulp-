@@ -1,0 +1,60 @@
+.toBecome {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__left {
+    margin: auto;
+    width: 100%;
+    max-width: 418px;
+  }
+  &__right {
+    margin: auto;
+    width: 100%;
+    max-width: 418px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 35px 18px;
+  }
+
+  &__title {
+    @extend .h1;
+    margin-bottom: 16px;
+  }
+
+  &__descr {
+    @extend .h3;
+    color: #818181;
+    margin-bottom: 22px;
+  }
+
+  &__button {
+
+  }
+
+  &__card {
+    width: 200px;
+    height: 125px;
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.12);
+    padding: 16px;
+
+    &__icon {
+
+    }
+
+    &__title {
+      @extend .h2;
+      font-size: 13px;
+      color: $dark_gray;
+    }
+
+    &__descr {
+      @extend .h3;
+      font-size: 11px;
+      color: $gray;
+    }
+  }
+}

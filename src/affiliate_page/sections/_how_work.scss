@@ -1,0 +1,47 @@
+.aff_HowWork {
+  //font-family: $Avenir;
+  padding: 56px 0 133px;
+
+  &__title {
+    @extend .h1;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__card {
+    margin: 0 auto 16px;
+    text-align: center;
+    width: 170px;
+    height: 200px;
+    @extend .notOnScreen;
+
+    &.js_isVisible {
+      @extend .onScreen;
+    }
+
+    &__img {
+      width: 145px;
+      height: 116px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transition: $transition;
+      &.js_isVisible {
+        opacity: 1;
+      }
+    }
+
+    &__descr {
+      @extend .h3;
+
+      span {
+        color: $purpur;
+      }
+    }
+  }
+}

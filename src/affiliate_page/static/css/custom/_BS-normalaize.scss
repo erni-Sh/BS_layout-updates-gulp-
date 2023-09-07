@@ -18,8 +18,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Avenir', 'Helvetica Neue', sans-serif;
-  font-weight: 400;
+  font-family: $Avenir;
+  color: $basic_black;
   background: rgb(255, 255, 255);
   margin: 0;
   width: 100%;
@@ -125,6 +125,26 @@ iframe {
 
 .clearfix {
   clear: both;
+}
+
+.main_wrapper {
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  overflow-y: auto;
+  overflow-x: hidden;
+  //-webkit-font-smoothing: subpixel-antialiased;
+}
+
+.container {
+  max-width: 990px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media screen and (max-width: $mobile){
+    padding-left: 2.343vw;
+    padding-right: 2.343vw;
+  }
 }
 
 
