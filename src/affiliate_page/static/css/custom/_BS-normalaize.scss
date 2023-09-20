@@ -136,15 +136,16 @@ iframe {
 }
 
 .container {
-  max-width: 990px;
+  width: 100vw;
+  max-width: 904px;// 990px;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  @media screen and (max-width: $mobile){
-    padding-left: 2.343vw;
-    padding-right: 2.343vw;
-  }
+  padding-left: 24px;
+  padding-right: 24px;
+  //@media screen and (max-width: $mobile){
+  //  padding-left: 2.343vw;
+  //  padding-right: 2.343vw;
+  //}
 }
 
 

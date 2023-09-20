@@ -1,20 +1,24 @@
 .toBecome {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  margin-bottom: 120px;
 
   &__left {
-    margin: auto;
     width: 100%;
-    max-width: 418px;
+    max-width: 408px;
+    opacity: 0;
+
+    &.js_isVisible {
+      animation: bounceInLeft 1s forwards;
+      opacity: 1;
+    }
   }
   &__right {
-    margin: auto;
     width: 100%;
     max-width: 418px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    justify-items: center;
     gap: 35px 18px;
   }
 
@@ -30,23 +34,39 @@
   }
 
   &__button {
-
+    display: block;
+    &__bottom {
+      margin-top: 40px;
+      text-align: center;
+      display: none;
+    }
   }
 
   &__card {
-    width: 200px;
-    height: 125px;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 100%; //200px;
     border-radius: 4px;
     background: #FFF;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.12);
     padding: 16px;
+    @extend .notOnScreen;
+
+    &.js_isVisible {
+      @extend .onScreen;
+    }
 
     &__icon {
-
+      width: fit-content;
+      margin-right: 8px;
     }
 
     &__title {
       @extend .h2;
+      line-height: 33px;
       font-size: 13px;
       color: $dark_gray;
     }
@@ -55,6 +75,25 @@
       @extend .h3;
       font-size: 11px;
       color: $gray;
+      margin-top: 8px;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    &__left {
+      max-width: none;
+    }
+    &__right {
+      margin: auto;
+      max-width: 631px;
+      gap: 16px;
+    }
+    &__button {
+      display: none;
+      &__bottom {
+        display: block;
+      }
     }
   }
 }

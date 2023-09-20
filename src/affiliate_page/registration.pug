@@ -6,15 +6,10 @@ block styles
 
 block scripts
 	script(src='/affiliate_page/static/js/custom/affiliate_common.js')
-	script(src='/affiliate_page/static/js/custom/affiliate_LP.js')
+	script(src='/affiliate_page/static/js/custom/affiliate_form.js')
 
 block main
 	main.main_wrapper
-		include sections/_top
-		include sections/_how_work
-		include sections/_ready_to_become
-		include sections/_why_buildsio
-		include sections/_earn_more
-		include sections/_start_earn
-		include sections/_faq
+		include section_common/_header
+		include sections_reg/_form
 		include section_common/_footer

@@ -1,0 +1,7 @@
+.footer {
+  @extend .h3;
+  color: white;
+  background-color: $basic_black;
+  padding: 20px 0;
+  text-align: center;
+}

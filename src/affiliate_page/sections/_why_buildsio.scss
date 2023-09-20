@@ -1,0 +1,61 @@
+.whyBS {
+  padding: 64px 0 128px;
+  background: linear-gradient(108deg, #211556 6.05%, #211556 60.34%, #361E7E 88.84%, #58319B 101.2%);
+  color: white;
+
+  &__title {
+    @extend .h1;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    margin: 0 auto;
+    width: 202px;
+    text-align: center;
+
+    &__img {
+      display: inline-block;
+      width: 154px;
+      height: 132px;
+      opacity: 0;
+      transition: $transition;
+      &_isVisible {
+        opacity: 1;
+      }
+    }
+
+    &__descr {
+      margin: auto;
+      width: 154px;
+      @extend .h3;
+      font-size: 13px;
+      span {
+        color: $yellow;
+      }
+    }
+
+    &__badge {
+      width: fit-content;
+      margin: 4px auto 0;
+      background: #9282D6;
+      padding: 4px 16px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    &__cards {
+      margin: auto;
+      max-width: 605px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.startEarn {
+  position: relative;
+  background: #261960;
+  padding: 105px 0 109px;
+  color: white;
+  text-align: center;
+
+  &__title {
+    position: relative;
+    @extend .h1;
+    margin-bottom: 38px;
+    padding: 0 20px;
+  }
+}

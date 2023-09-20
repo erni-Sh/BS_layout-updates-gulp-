@@ -1,0 +1,35 @@
+.thnx {
+  height: calc(var(--vh, 1vh) * 100 - 56px - 59px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &__img {
+    width: 291.846px;
+    height: 183.285px;
+    margin-bottom: 22px;
+    opacity: 0;
+    &_isVisible {
+      animation: leftToCenter 1s forwards;
+    }
+  }
+  &__title {
+    @extend .h1;
+    margin-bottom: 16px;
+  }
+  &__descr {
+    @extend .h3;
+    margin-bottom: 32px;
+    max-width: 496px;
+  }
+  &__finePrint {
+    @extend .h3;
+    color: $gray;
+    a {
+      color: $purpur;
+      @extend .BS_link;
+    }
+  }
+}

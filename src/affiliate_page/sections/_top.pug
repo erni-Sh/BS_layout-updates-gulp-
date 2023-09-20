@@ -3,12 +3,14 @@ section.affTop
 		onload=`this.classList.add('affLP__imageBG_isVisible')` alt="background").affLP__imageBG
 	.affTop__wrapper.container
 		.affTop__left
-			a(href='/' data-event-name='user_tap_logo').affTop__logo
+			a(href='/' data-event-name='user_tap_logo').affTop__logo.js-gaEvent
 				include ../includes/_svg/new_logo.svg
-			h1.affTop__title Builds.io Affiliate Program
-			.affTop__descr Earn from 10% commission by promoting our product
+			h1.affTop__title Builds.io Affiliate&nbsp;Program
+			.affTop__descr Earn from 10% commission by promoting our&nbsp;product
 			.affTop__spacer
 			.affTop__button
-				a(href='')
+				a(href='/affiliate/registration' data-event-name='user_tap_join_now_upper').js-gaEvent
 					button.BS_button
 						span JOIN NOW
+		img(src='/affiliate_page/static/assets/affiliate_page_2023/top_front.png'
+			onload=`this.classList.add('affTop__pic_isVisible')` alt="front_image").affTop__pic

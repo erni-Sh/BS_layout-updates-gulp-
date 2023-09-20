@@ -1,0 +1,33 @@
+section.faq.container
+	.faq__title Frequently asked questions
+
+	mixin Spoiler(title, content)
+		.faq__spoiler
+			div(data-event-name='user_tap_faq_spoiler').js-gaEvent.faq__spoiler__title
+				.faq__spoiler__icon
+					include ../includes/_svg/spoiler_icon.svg
+				b !{title}
+
+			.faq__spoiler__content
+				.faq__spoiler__content__inner !{content}
+
+	+Spoiler(
+		'What are the requirements to&nbsp;participate in&nbsp;the BuildStore affiliate program?',
+		'The only requirement is&nbsp;the availability of&nbsp;a&nbsp;resource to&nbsp;attract an&nbsp;interested audience for our product'
+	)
+	+Spoiler(
+    'How can&nbsp;I receive my&nbsp;earned commissions?',
+    'You can choose any of&nbsp;the available withdrawal methods: Paypal, credit card, cryptocurrency, etc. Withdrawal of&nbsp;funds currently works through support'
+	)
+	+Spoiler(
+    'What advertising materials are provided to&nbsp;affiliates of&nbsp;the platform?',
+    'We&nbsp;provide various advertising materials, including banners, text links, graphical elements. You can use these materials on&nbsp;your website, blog, or&nbsp;social media platforms to&nbsp;drive traffic and recommend the gaming platform&rsquo;s products.'
+	)
+	+Spoiler(
+    'How is&nbsp;my&nbsp;activity tracked within the affiliate program?',
+    'Your activity is&nbsp;tracked using unique affiliate links that you use for recommendations. When someone clicks on&nbsp;your link and makes a&nbsp;purchase, the system tracks that activity and associates it&nbsp;with your affiliate account.'
+	)
+	+Spoiler(
+    'Can I&nbsp;become an&nbsp;affiliate if&nbsp;I don&rsquo;t have my&nbsp;own website or&nbsp;a&nbsp;YouTube channel?',
+    '<p>Unfortunately, there is no such possibility yet. However, you can get free access to our service for a month by inviting 5 users</p><p>Details here - <a href="https://builds.io/customer/promocodes/">promocodes</a></p>'
+	)

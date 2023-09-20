@@ -12,7 +12,7 @@
   &__left {
     position: relative;
     padding: 175px 0 0;
-    max-width: 47%;
+    z-index: 2;
   }
   &__logo {
     display: block;
@@ -41,6 +41,18 @@
     margin: auto;
   }
 
+  &__pic {
+    position: absolute;
+    width: 648px;
+    bottom: 12px;
+    right: -43px;
+    opacity: 0;
+    transition: $transition;
+    &_isVisible {
+      opacity: 1;
+    }
+  }
+
   @media screen and (max-width: 661px){
     &__wrapper {
       min-height: auto;
@@ -48,11 +60,11 @@
 
     &__left {
       max-width: 100%;
-      padding: 30px 15px 0;
+      padding: 111px 15px 0;
     }
 
     &__logo {
-      margin-bottom: 22px;
+      margin-bottom: 34px;
       & > svg {
         width: 173px;
       }
@@ -65,8 +77,16 @@
     &__button {
       display: block;
       text-align: center;
-      min-height: 119px;
+      min-height: 90px// 119px;
       //padding-bottom: 69px;
+    }
+    &__pic {
+      position: absolute;
+      width: calc(460/320*100vw);
+      max-width: 500px;
+      bottom: 114px;
+      right: 50%;
+      transform: translateX(42%);
     }
   }
 }

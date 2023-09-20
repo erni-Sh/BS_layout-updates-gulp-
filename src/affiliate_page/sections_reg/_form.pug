@@ -1,0 +1,54 @@
+section.affForm.container
+	form(onsubmit='').affForm__form
+		.affForm__title Basic information
+		fieldset.affForm__fieldset
+			mixin InputWide(label, name, type)
+				label.affForm__label.affForm__label_Wide= label
+					input(name= name type= type data-event-name='user_tap_!{name}').js-gaEvent.affForm__input.
+					.affForm__input__error
+
+			mixin Input(label, name, type)
+				label.affForm__label= label
+					input(name= name type= type data-event-name='user_tap_!{name}').js-gaEvent.affForm__input
+					.affForm__input__error
+
+			+InputWide('Email', 'email', 'text')
+			+Input('First Name', 'f_name', 'text')
+			+Input('Last Name', 'l_name', 'text')
+
+		.affForm__title Affiliate account settings
+		fieldset.affForm__fieldset
+			+InputWide('Username', 'username', 'text')
+			+Input('Password', 'password', 'password')
+			+Input('Password confirm', 'password_rep', 'password')
+
+			// SELECT
+			.affForm__select
+				.affForm__label Choose a convenient withdrawal method
+				.select__wrapper
+					.select
+						div(data-event-name='user_tap_pay_method').js-gaEvent.select__item
+							label.select__label_selected
+							svg(xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7' fill='none').select__svg
+								path(d='M1 1L5 5L9 1' stroke='#252525' stroke-width='1.5' stroke-linecap='round')
+
+						.select__items
+							.select__item
+								label.select__label
+									input.select__checkbox(type='radio' name='pay_method' value='Cryptocurrency')
+									| Cryptocurrency
+							.select__item
+								label.select__label
+									input.select__checkbox(type='radio' name='pay_method' value='Paypal')
+									| Paypal
+							.select__item
+								label.select__label
+									input.select__checkbox(type='radio' name='pay_method' value='Wire transfer')
+									| Wire transfer
+
+
+				.affForm__input__error
+
+			+InputWide('Your Website URL/Blog/Social Media', 'site', 'text')
+
+		button(type='submit' data-event-name='user_tap_submit').js-gaEvent.affForm__submit.BS_button Submit

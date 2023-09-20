@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/arcade-classic');
+
+
+.BS_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  height: 89px;
+  width: 402px;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+  transition: .3s ease all;
+  text-decoration: none !important;
+
+  &:active {
+    transform: scale(.97);
+  }
+
+  & > span {
+    position: relative;
+  }
+
+  @media (hover:hover) {
+    &:hover {
+      color: #1F1B35FF;
+      cursor: pointer;
+    }
+  }
+}
+
+.rGame {
+  background: #230970;
+  font-family: 'Montserrat';
+  color: white;
+  padding-top: 98px;
+  padding-bottom: 100px;
+
+  a {
+    text-decoration: none;
+  }
+
+  &__title {
+    color: #FFED00;
+    text-align: center;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 36px;
+    margin-bottom: 32px;
+
+    span {
+      display: block;
+      font-size: 55px;
+    }
+  }
+
+  &__wrapper {
+    border-radius: 50px;
+    border: 2px solid #806DB9;
+    display: flex;
+    width: 500px;
+    margin: auto;
+    padding: 40px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__textTop {
+    font-size: 21px;
+  }
+  &__counter {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 402px;
+    &__item {
+      font-family: 'ArcadeClassic', sans-serif;
+      font-size: 66px;
+      width: 169px;
+      height: 119px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      border: 2px solid #806DB9;
+    }
+    &__divider {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: TikTak 2s infinite steps(1);
+    }
+  }
+  &__finePrint {
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+  }
+  &__buttonOne {
+    @extend .BS_button;
+    font-family: 'ArcadeClassic', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 100px;
+    background: #FF03F4;
+    color: white;
+    font-size: 66px;
+  }
+
+  &__title2 {
+    color: #FFED00;
+    text-align: center;
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 900;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 436px;
+    &__old {
+      color: #806DB9;
+      text-align: center;
+      font-size: 50px;
+      font-style: italic;
+      & > span {
+        font-size: 21px;
+        color: white;
+      }
+    }
+    &__new {
+      color: #FFED00;
+      text-align: center;
+      font-size: 55px;
+      font-style: italic;
+      font-weight: 900;
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    &__item {
+      &:before {
+        width: 14px;
+        height: 13px;
+        content: '';
+        display: inline-block;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAaCAYAAABLlle3AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMPSURBVHgBtZZdSFNhGMf/O559uLJ0c8o2uigvMjE/RpgEBUJFYuhlEaaBSF1UFhkRSaVEEgRedhN0UTdBEhVBEQTeBJUXmvY1dVrq5jY9Z27TOfdxeneObs5ztqZufxjv+47znN95Ps+RFWVf4ZBhsddsoKcUyHmu5c8UMiz2qhVM2zTYi9PgsrjMQ+du/wVzaQoIhBDQ++Bumsks1NFtgavRygMRCPM/5sIkgkY/aKRbMsDZOQZPg52AyJkjIeWENawKwdFlTj/U0TUiCRRWwFfOpBfq7CDAOts6YGxPzyihu1+cPihzfhzu+unEQKsKxrZK0DZVeqBsyzjY5vEVIOLDSqQ058DQbgI1L+fPW4a6mibANI9JAIW96nsu9LcI0BtDxbcMxWH+1CRS1VKpC8zZ0WhLrG2PyD67Pw+G6wfigBHFnZhWC9jGCSzvWoDuYXFSYLDQB/uNQXDhIBASe6i07IC+sxKyZfEoiEI9dWRUnbbwYXLXTiKsCKCgpwQyX5bIiJOHYe3+gqBmkVzPifIon1HD0HGQ2Epnj1596tmW30JYVgy9h0klUgEU3jOJjJgzZgS0Hsk80o5sGO5Wg3LLkUi879YHn8m08MfyEiRrMARvlQ2Oy4NxBovlTrjqRyTzSNuVMNw5RMBqJJPgf5Bb8XJNXiDsPUf+IIuVQ/u0hC+02dYBAcRBFFbdowrIncmBUajhZjXs7V+xtMcV11+rN3TVmkEtUDwlkOuVzGPeqxKohwuQimTRlzgZ1LPnvmH+2JikF5GV8tN8ga3P486+IuQ/MyFVxcqLGOc/KQPlkoNt+CE5ysKUX1Q89Nw2aHr3YyMS1bTm5T7SdxzYk8NxuZV6iKwFBYw9NaB8cmxEko2keU2KJhQGWzsk/CEBjKzaFybe040q4ezVvC0VwMeHIOXtzk97kdO/G5tR0oGveVfGjzj26ED8AGBJHt9XYLP671tG86EMIdUi3FU/o94aH58geVRgs0rpw0z3phrqXwZ+gOR9rCCebsdWlPLXYGFvDdSjemj6Uu/HRPoHMfGywjgPCbIAAAAASUVORK5CYII=') no-repeat;
+        background-size: contain;
+        margin-right: 16px;
+      }
+    }
+  }
+
+  &__bonus {
+    &__top {
+      color: #FFED00;
+      text-align: center;
+      font-size: 55px;
+      font-style: italic;
+      font-weight: 900;
+    }
+    &__bottom {
+      width: 374px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &__gift {
+      width: 92px;
+      height: 107px;
+    }
+    &__descr {
+      color: #FFF;
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 500;
+      & > span {
+        display: block;
+        color: #FFED00;
+      }
+    }
+  }
+  &__buttonSecond {
+    @extend .BS_button;
+    background: #FFED00;
+    border-radius: 50px;
+    color: #000;
+    text-align: center;
+    font-family: 'ArcadeClassic', sans-serif;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 39.6px */
+    text-transform: uppercase;
+    @media (hover:hover) {
+      &:hover {
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@keyframes TikTak {
+  0% {opacity: 1;}
+  50% {opacity: 0;}
+}

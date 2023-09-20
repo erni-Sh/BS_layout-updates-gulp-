@@ -8,11 +8,11 @@
   font-weight: 800;
   font-size: 24px;
   line-height: 30px;
-  @media screen and (max-width: $mobile) {
-    font-weight: 500;
-    font-size: 4.375vw;
-    line-height: 5.94vw;
-  }
+  //@media screen and (max-width: $mobile) {
+  //  font-weight: 500;
+  //  font-size: 4.375vw;
+  //  line-height: 5.94vw;
+  //}
 }
 
 .h2 {
@@ -95,8 +95,6 @@
 
   & > span {
     position: relative;
-
-    //transition: .2s ease all;
   }
 
   @media (hover:hover) {
@@ -105,11 +103,13 @@
       cursor: pointer;
     }
   }
+  @media screen and (max-width: $mobile) {
+    width: 272px;
+  }
 }
 
 .BS_link {
   transition: $transition;
-
   @media(hover:hover) {
     &:hover {
       color: $yellow;

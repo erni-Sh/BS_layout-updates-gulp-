@@ -1,11 +1,12 @@
 .aff_HowWork {
-  //font-family: $Avenir;
-  padding: 56px 0 133px;
+  padding-top: 56px;
+  padding-bottom: 113px;
 
   &__title {
     @extend .h1;
     text-align: center;
     margin-bottom: 40px;
+    padding: 0 20px;
   }
   &__cards {
     display: flex;
@@ -31,7 +32,7 @@
       margin-bottom: 24px;
       opacity: 0;
       transition: $transition;
-      &.js_isVisible {
+      &_isVisible {
         opacity: 1;
       }
     }
@@ -42,6 +43,14 @@
       span {
         color: $purpur;
       }
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding-bottom: 56px;
+    &__cards {
+      margin: 0 auto;
+      max-width: 525px;
     }
   }
 }

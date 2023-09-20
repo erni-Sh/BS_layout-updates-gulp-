@@ -1,0 +1,94 @@
+.earnMore {
+  padding-top: 56px;
+  padding-bottom: 78px;
+
+  &__title {
+    @extend .h1;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  &__subtitle {
+    @extend .h3;
+    text-align: center;
+    margin-bottom: 45px;
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(418px, 1fr));
+    justify-content: center;
+
+    //display: flex;
+    //justify-content: space-between;
+    //flex-wrap: wrap;
+    gap: 36px 20px;
+  }
+  &__card {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; //36
+    display: flex;
+    @extend .notOnScreen;
+
+    &.js_isVisible {
+      @extend .onScreen;
+    }
+
+    &__left {
+      width: 126px;
+      margin-right: 20px;
+    }
+    &__right {
+
+    }
+    &__icon {
+      width: 126px;
+      height: 126px;
+      opacity: 0;
+      transition: $transition;
+      &_isVisible {
+        opacity: 1;
+      }
+    }
+    &__title {
+      @extend .h1;
+    }
+    &__descr {
+      @extend .h3;
+      p {
+        margin-top: 8px;
+      }
+      span {
+        color: $purpur;
+      }
+      a {
+        color: $purpur;
+        transition: $transition;
+
+        @media(hover: hover) {
+          &:hover {
+            color: $yellow;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      text-align: center;
+      &__left {
+        padding-right: 0;
+        margin: auto;
+      }
+    }
+  }
+
+  @media screen and (max-width: 466px) {
+    padding-bottom: 40px;
+    &__subtitle {
+      margin-bottom: 28px;
+    }
+    &__cards {
+      grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+    }
+  }
+}
