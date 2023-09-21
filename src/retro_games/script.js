@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateClock = () => {
     const {hours, minutes} = getTimeRemaining(deadline);
     hoursElem.innerHTML = hours;
-    minutesElem.innerHTML = minutes;
+    minutesElem.innerHTML = minutes.toString().length === 1 ? `0${minutes}` : minutes;
   }
 
   setInterval(updateClock, 1000);

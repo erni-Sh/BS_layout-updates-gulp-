@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/arcade-classic');
-
+//$arcade: 'ArcadeClassic', sans-serif;
+$arcade: 'arcade',Arial,sans-serif;
 
 .BS_button {
   display: flex;
@@ -34,6 +35,10 @@
       color: #1F1B35FF;
       cursor: pointer;
     }
+  }
+  @media screen and (max-width: 560px) {
+    width: calc(402/530*100vw);
+    height: calc(89/530*100vw);
   }
 }
 
@@ -84,7 +89,7 @@
     justify-content: space-between;
     width: 402px;
     &__item {
-      font-family: 'ArcadeClassic', sans-serif;
+      font-family: $arcade;
       font-size: 66px;
       width: 169px;
       height: 119px;
@@ -109,7 +114,7 @@
   }
   &__buttonOne {
     @extend .BS_button;
-    font-family: 'ArcadeClassic', sans-serif;
+    font-family: $arcade;
     font-style: normal;
     font-weight: 400;
     border-radius: 100px;
@@ -156,12 +161,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    font-size: 21px;
     &__item {
       &:before {
+        display: inline-block;
         width: 14px;
         height: 13px;
         content: '';
-        display: inline-block;
         background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAaCAYAAABLlle3AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMPSURBVHgBtZZdSFNhGMf/O559uLJ0c8o2uigvMjE/RpgEBUJFYuhlEaaBSF1UFhkRSaVEEgRedhN0UTdBEhVBEQTeBJUXmvY1dVrq5jY9Z27TOfdxeneObs5ztqZufxjv+47znN95Ps+RFWVf4ZBhsddsoKcUyHmu5c8UMiz2qhVM2zTYi9PgsrjMQ+du/wVzaQoIhBDQ++Bumsks1NFtgavRygMRCPM/5sIkgkY/aKRbMsDZOQZPg52AyJkjIeWENawKwdFlTj/U0TUiCRRWwFfOpBfq7CDAOts6YGxPzyihu1+cPihzfhzu+unEQKsKxrZK0DZVeqBsyzjY5vEVIOLDSqQ058DQbgI1L+fPW4a6mibANI9JAIW96nsu9LcI0BtDxbcMxWH+1CRS1VKpC8zZ0WhLrG2PyD67Pw+G6wfigBHFnZhWC9jGCSzvWoDuYXFSYLDQB/uNQXDhIBASe6i07IC+sxKyZfEoiEI9dWRUnbbwYXLXTiKsCKCgpwQyX5bIiJOHYe3+gqBmkVzPifIon1HD0HGQ2Epnj1596tmW30JYVgy9h0klUgEU3jOJjJgzZgS0Hsk80o5sGO5Wg3LLkUi879YHn8m08MfyEiRrMARvlQ2Oy4NxBovlTrjqRyTzSNuVMNw5RMBqJJPgf5Bb8XJNXiDsPUf+IIuVQ/u0hC+02dYBAcRBFFbdowrIncmBUajhZjXs7V+xtMcV11+rN3TVmkEtUDwlkOuVzGPeqxKohwuQimTRlzgZ1LPnvmH+2JikF5GV8tN8ga3P486+IuQ/MyFVxcqLGOc/KQPlkoNt+CE5ysKUX1Q89Nw2aHr3YyMS1bTm5T7SdxzYk8NxuZV6iKwFBYw9NaB8cmxEko2keU2KJhQGWzsk/CEBjKzaFybe040q4ezVvC0VwMeHIOXtzk97kdO/G5tR0oGveVfGjzj26ED8AGBJHt9XYLP671tG86EMIdUi3FU/o94aH58geVRgs0rpw0z3phrqXwZ+gOR9rCCebsdWlPLXYGFvDdSjemj6Uu/HRPoHMfGywjgPCbIAAAAASUVORK5CYII=') no-repeat;
         background-size: contain;
         margin-right: 16px;
@@ -204,7 +210,7 @@
     border-radius: 50px;
     color: #000;
     text-align: center;
-    font-family: 'ArcadeClassic', sans-serif;
+    font-family: $arcade;
     font-size: 33px;
     font-style: normal;
     font-weight: 400;
@@ -217,6 +223,89 @@
       }
     }
   }
+
+  @media screen and (max-width: 560px) {
+    padding-top: calc(98/530*100vw);
+    padding-bottom: calc(100/530*100vw);
+    &__title {
+      font-size: calc(36/530*100vw);
+      span {
+        font-size: calc(55/530*100vw);
+      }
+    }
+
+    &__wrapper {
+      width: calc(500/530*100vw);
+      padding: calc(40/530*100vw) 0;
+      gap: calc(32/530*100vw);
+    }
+
+    &__textTop {
+      font-size: calc(21/530*100vw);
+    }
+
+    &__counter {
+      width: calc(402/530*100vw);
+      &__item {
+        width: calc(169/530*100vw);
+        height: calc(119/530*100vw);
+        font-size: calc(66/530*100vw);
+      }
+      &__divider {
+        transform: translate(-50%, -50%) scale(.8);
+      }
+    }
+    &__finePrint {
+      font-size: calc(14/530*100vw);
+    }
+    &__buttonOne {
+      font-size: calc(66/530*100vw);
+      border-radius: calc(100/530*100vw);
+    }
+    &__title2 {
+      font-size: calc(36/530*100vw);
+    }
+    &__price {
+      width: calc(436/530*100vw);
+      &__old {
+        font-size: calc(50/530*100vw);
+        & > span {
+          font-size: calc(21/530*100vw);
+        }
+      }
+      &__new {
+        font-size: calc(55/530*100vw);
+      }
+    }
+    &__features {
+      font-size: calc(21/530*100vw);
+      gap: calc(16/530*100vw);
+      &__item:before {
+        width: calc(14/530*100vw);
+        height: calc(13/530*100vw);
+      }
+    }
+    &__bonus {
+      &__top {
+        font-size: calc(55/530*100vw);
+      }
+      &__bottom {
+        width: calc(374/530*100vw);
+      }
+      &__gift {
+        width: calc(92/530*100vw);
+        height: calc(107/530*100vw);
+      }
+      &__descr {
+        font-size: calc(21/530*100vw);
+      }
+    }
+
+    &__buttonSecond {
+      font-size: calc(33/530*100vw);
+    }
+  }
+
 }
 
 @keyframes TikTak {
